@@ -1,4 +1,4 @@
-package com.khubla.olmreader.zip;
+package com.khubla.olmreader.olm;
 
 import java.io.InputStream;
 

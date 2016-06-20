@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.khubla.olmreader.zip.OLMPackage;
+import com.khubla.olmreader.olm.OLMPackage;
 
 public class OLMReader {
    private static String FN = "/Users/tom/Desktop/Outlook for Mac Archive.olm";
