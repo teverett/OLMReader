@@ -70,9 +70,8 @@ public class OLMLocalFileHeader {
          /*
           * extra
           */
-         final byte[] ex = new byte[ret.extraFieldLength];
-         is.read(ex, 0, ret.extraFieldLength);
-         ret.extraField = new String(ex);
+         ret.extraField = new byte[ret.extraFieldLength];
+         is.read(ret.extraField, 0, ret.extraFieldLength);
          return ret;
       } catch (final Exception e) {
          e.printStackTrace();
@@ -131,7 +130,7 @@ public class OLMLocalFileHeader {
    /**
     * extraField
     */
-   private String extraField;
+   private byte[] extraField;
 
    public short getBitflags() {
       return bitflags;
@@ -149,7 +148,7 @@ public class OLMLocalFileHeader {
       return crc;
    }
 
-   public String getExtraField() {
+   public byte[] getExtraField() {
       return extraField;
    }
 

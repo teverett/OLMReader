@@ -9,6 +9,13 @@ public class OLMPackage {
    public static OLMPackage read(InputStream inputStream, OLMFileCallback olmFileCallback) throws Exception {
       try {
          final OLMPackage ret = new OLMPackage();
+         /*
+          * read the central directory
+          */
+         OLMCentralDirectory olmCentralDirectory = OLMCentralDirectory.read(inputStream);
+         /*
+          * read a file
+          */
          final OLMFile olmFile = OLMFile.read(inputStream);
          olmFileCallback.file(olmFile.getOlmLocalFileHeader().getFilename(), null);
          return ret;
