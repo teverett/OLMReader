@@ -133,58 +133,24 @@ public class OLMLocalFileHeader {
     */
    private String extraField;
 
-   /**
-    * check if there is a data descriptor
-    */
-   public boolean hasDataDescriptor() {
-      return ((this.bitflags >> 3) & 1) != 0;
-   }
-
-   /**
-    * check if encrypted
-    */
-   public boolean isEncrypted() {
-      return ((this.bitflags >> 0) & 1) != 0;
-   }
-
-   public int getSignature() {
-      return signature;
-   }
-
-   public short getVersion() {
-      return version;
-   }
-
    public short getBitflags() {
       return bitflags;
-   }
-
-   public short getCompressionType() {
-      return compressionType;
-   }
-
-   public short getLastModDate() {
-      return lastModDate;
-   }
-
-   public short getLastModTime() {
-      return lastModTime;
-   }
-
-   public int getCrc() {
-      return crc;
    }
 
    public int getCompressedSize() {
       return compressedSize;
    }
 
-   public int getUncompressedSize() {
-      return uncompressedSize;
+   public short getCompressionType() {
+      return compressionType;
    }
 
-   public short getFilenameLength() {
-      return filenameLength;
+   public int getCrc() {
+      return crc;
+   }
+
+   public String getExtraField() {
+      return extraField;
    }
 
    public short getExtraFieldLength() {
@@ -195,7 +161,41 @@ public class OLMLocalFileHeader {
       return filename;
    }
 
-   public String getExtraField() {
-      return extraField;
+   public short getFilenameLength() {
+      return filenameLength;
+   }
+
+   public short getLastModDate() {
+      return lastModDate;
+   }
+
+   public short getLastModTime() {
+      return lastModTime;
+   }
+
+   public int getSignature() {
+      return signature;
+   }
+
+   public int getUncompressedSize() {
+      return uncompressedSize;
+   }
+
+   public short getVersion() {
+      return version;
+   }
+
+   /**
+    * check if there is a data descriptor
+    */
+   public boolean hasDataDescriptor() {
+      return ((bitflags >> 3) & 1) != 0;
+   }
+
+   /**
+    * check if encrypted
+    */
+   public boolean isEncrypted() {
+      return ((bitflags >> 0) & 1) != 0;
    }
 }

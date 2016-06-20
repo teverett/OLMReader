@@ -6,10 +6,11 @@ public class OLMPackage {
    /**
     * read an OLM package
     */
-   public static OLMPackage read(InputStream inputStream) throws Exception {
+   public static OLMPackage read(InputStream inputStream, OLMFileCallback olmFileCallback) throws Exception {
       try {
          final OLMPackage ret = new OLMPackage();
-         OLMFile.read(inputStream);
+         final OLMFile olmFile = OLMFile.read(inputStream);
+         olmFileCallback.file(olmFile.getOlmLocalFileHeader().getFilename(), null);
          return ret;
       } catch (final Exception e) {
          e.printStackTrace();

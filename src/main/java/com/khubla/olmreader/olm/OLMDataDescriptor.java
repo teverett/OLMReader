@@ -6,11 +6,6 @@ import com.google.common.io.LittleEndianDataInputStream;
 
 public class OLMDataDescriptor {
    /**
-    * file signature
-    */
-   private static final int SIGNATURE = 0x04034b50;
-
-   /**
     * read an OLM file
     */
    public static OLMDataDescriptor read(InputStream inputStream) throws Exception {
@@ -49,12 +44,12 @@ public class OLMDataDescriptor {
     */
    private int uncompressedSize;
 
-   public int getCrc() {
-      return crc;
-   }
-
    public int getCompressedSize() {
       return compressedSize;
+   }
+
+   public int getCrc() {
+      return crc;
    }
 
    public int getUncompressedSize() {
