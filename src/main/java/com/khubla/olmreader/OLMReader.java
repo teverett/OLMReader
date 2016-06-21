@@ -23,7 +23,8 @@ public class OLMReader {
             if (zipEntry.isDirectory() == false) {
                if (zipEntry.getName().trim().toLowerCase().endsWith(".xml")) {
                   InputStream inputStream = zipfile.getInputStream(zipEntry);
-                  OLMMessage.read(inputStream);
+                  OLMMessage olmMessage = OLMMessage.read(inputStream);
+                  System.out.println(olmMessage.getBody());
                }
             }
          }
