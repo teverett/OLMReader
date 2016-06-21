@@ -1,6 +1,7 @@
 package com.khubla.olmreader;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -17,15 +18,13 @@ public class OLMReader {
          ZipFile zipfile = new ZipFile(FN);
          for (Enumeration<? extends ZipEntry> e = zipfile.entries(); e.hasMoreElements();) {
             ZipEntry zipEntry = e.nextElement();
-            processFile(zipEntry);
+            System.out.println(zipEntry.getName());
+            InputStream inputStream = zipfile.getInputStream(zipEntry);
+            OLMMessage.read(inputStream);
          }
          zipfile.close();
       } catch (final Exception e) {
          e.printStackTrace();
       }
-   }
-
-   private static void processFile(ZipEntry zipEntry) {
-      System.out.println(zipEntry.getName());
    }
 }
