@@ -1,11 +1,11 @@
 package com.khubla.olmreader;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import com.khubla.olmreader.olm.OLMFileCallback;
-import com.khubla.olmreader.olm.OLMPackage;
 
 public class OLMReader implements OLMFileCallback {
    private static String FN = "/Users/tom/Desktop/Outlook for Mac Archive.olm";
@@ -16,9 +16,16 @@ public class OLMReader implements OLMFileCallback {
 
    private static void readOLMFile() {
       try {
-         final InputStream is = new FileInputStream(FN);
-         final OLMReader olmReader = new OLMReader();
-         OLMPackage.read(is, olmReader);
+         ZipFile zipfile = new ZipFile(FN);
+         for (Enumeration<? extends ZipEntry> e = zipfile.entries(); e.hasMoreElements();) {
+            ZipEntry zipEntry = e.nextElement();
+            System.out.println(zipEntry.getName());
+         }
+         // File file = new File(FN);
+         // if (file.exists()) {
+         // final OLMReader olmReader = new OLMReader();
+         // OLMPackage.read(file, olmReader);
+         // }
       } catch (final Exception e) {
          e.printStackTrace();
       }

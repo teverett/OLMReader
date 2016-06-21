@@ -3,8 +3,6 @@ package com.khubla.olmreader.olm;
 import java.io.InputStream;
 
 /**
- * https://users.cs.jmu.edu/buchhofp/forensics/formats/pkzip.html
- *
  * @author tom
  */
 public class OLMFile {

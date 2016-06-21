@@ -1,34 +1,65 @@
 package com.khubla.olmreader.olm;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
-import com.google.common.io.LittleEndianDataInputStream;
+import org.apache.commons.io.EndianUtils;
 
 public class OLMCentralDirectory {
    /**
     * central directory signature
     */
-   private static final int SIGNATURE = 0x02014b50;
-   private static final String STRING_SIGNATURE = "504b0102";
+   private static final byte[] START_BYTE_SIGNATURE = { 0x50, 0x4b, 0x01, 0x02 };
+   private static final int CHUNKSIZE = 1000;
+   private static final int EXTRA = 10;
+   /**
+    * file headers
+    */
+   private final ArrayList<OLMCentralDirectoryFileHeader> fileHeaders = new ArrayList<OLMCentralDirectoryFileHeader>();
+   /**
+    * end record
+    */
+   private OLMCentralDirectoryEndRecord olmCentralDirectoryEndRecord;
 
    /**
     * read a central directory
     */
-   public static OLMCentralDirectory read(InputStream inputStream) throws Exception {
+   public static OLMCentralDirectory read(RandomAccessFile randomAccessFile) throws Exception {
       try {
-         boolean foundHeader = scanForHeader(inputStream);
-         final OLMCentralDirectory ret = new OLMCentralDirectory();
-         final LittleEndianDataInputStream is = new LittleEndianDataInputStream(inputStream);
-         /*
-          * signature
-          */
-         ret.signature = is.readInt();
-         if (ret.signature != SIGNATURE) {
-            throw new Exception("Central Directory signature is incorrect");
+         long idx = scanForHeader(randomAccessFile);
+         if (-1 != idx) {
+            final OLMCentralDirectory ret = new OLMCentralDirectory();
+            /*
+             * seek to the start of the central directory
+             */
+            randomAccessFile.seek(idx);
+            /*
+             * read file headers
+             */
+            boolean more = true;
+            while (more) {
+               /*
+                * read
+                */
+               OLMCentralDirectoryFileHeader olmCentralDirectoryFileHeader = OLMCentralDirectoryFileHeader.read(randomAccessFile);
+               if (null != olmCentralDirectoryFileHeader) {
+                  ret.fileHeaders.add(olmCentralDirectoryFileHeader);
+                  System.out.println(olmCentralDirectoryFileHeader.getFilename());
+               }
+               /*
+                * check
+                */
+               int endSig = EndianUtils.swapInteger(randomAccessFile.readInt());
+               randomAccessFile.seek(randomAccessFile.getFilePointer() - 4);
+               if (endSig == OLMCentralDirectoryEndRecord.SIGNATURE) {
+                  ret.olmCentralDirectoryEndRecord = OLMCentralDirectoryEndRecord.read(randomAccessFile);
+                  more = false;
+               }
+            }
+            return ret;
          }
-         return ret;
+         return null;
       } catch (final Exception e) {
          e.printStackTrace();
          return null;
@@ -38,27 +69,35 @@ public class OLMCentralDirectory {
    /**
     * scan for the header
     */
-   private static boolean scanForHeader(InputStream inputStream) {
-      Scanner streamScanner = null;
+   private static long scanForHeader(RandomAccessFile randomAccessFile) throws IOException {
+      byte[] chunk = new byte[CHUNKSIZE];
+      long idx = randomAccessFile.length() - CHUNKSIZE;
       try {
-         streamScanner = new Scanner(new InputStreamReader(inputStream));
-         if (streamScanner.findWithinHorizon(STRING_SIGNATURE, 0) != null) {
-            return true;
-         } else {
-            return false;
+         randomAccessFile.seek(idx);
+         /*
+          * read bytes, backward
+          */
+         randomAccessFile.readFully(chunk, 0, CHUNKSIZE);
+         /*
+          * find
+          */
+         for (int i = 0; i < CHUNKSIZE; i++) {
+            if ((chunk[i + 0] == START_BYTE_SIGNATURE[0]) && (chunk[i + 1] == START_BYTE_SIGNATURE[1]) && (chunk[i + 2] == START_BYTE_SIGNATURE[2]) && (chunk[i + 3] == START_BYTE_SIGNATURE[3])) {
+               return idx + i;
+            }
          }
+         /*
+          * next idx
+          */
+         if (idx < CHUNKSIZE) {
+            idx = 0;
+         } else {
+            idx = idx - (CHUNKSIZE - EXTRA);
+         }
+         return -1;
       } catch (Exception e) {
          e.printStackTrace();
-         return false;
-      } finally {
-         if (null != streamScanner) {
-            streamScanner.close();
-         }
+         return -1;
       }
    }
-
-   /**
-    * file signature
-    */
-   private int signature;
 }
