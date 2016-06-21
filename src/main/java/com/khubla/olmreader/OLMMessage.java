@@ -1,24 +1,29 @@
 package com.khubla.olmreader;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
-import org.apache.commons.io.IOUtils;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
 
 public class OLMMessage {
+   private Document document;
+
    public static OLMMessage read(InputStream inputStream) {
       try {
          OLMMessage ret = new OLMMessage();
-         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-         IOUtils.copy(inputStream, baos);
-         System.out.println(baos.toString());
-         // DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-         // DocumentBuilder builder = factory.newDocumentBuilder();
-         // Document doc = builder.parse(inputStream);
+         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+         DocumentBuilder builder = factory.newDocumentBuilder();
+         ret.document = builder.parse(inputStream);
          return ret;
       } catch (Exception e) {
          e.printStackTrace();
          return null;
       }
+   }
+
+   public Document getDocument() {
+      return document;
    }
 }
