@@ -1,36 +1,63 @@
 package com.khubla.olmreader;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Enumeration;
 
-import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
-import org.apache.commons.compress.archivers.zip.ZipFile;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 
-public class OLMReader {
-   private static String FN = "/Users/tom/Desktop/Outlook for Mac Archive.olm";
+import com.khubla.olmreader.olm.OLMFile;
+import com.khubla.olmreader.olm.OLMMessage;
+import com.khubla.olmreader.olm.OLMMessageCallback;
+import com.khubla.olmreader.olm.OLMRawMessageCallback;
+
+public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
+   /**
+    * file option
+    */
+   private static final String FILE_OPTION = "file";
 
    public static void main(String[] args) throws IOException {
-      readOLMFile();
-   }
-
-   private static void readOLMFile() {
+      System.out.println("khubla.com kPascal Interpreter");
+      /*
+       * options
+       */
+      final Options options = new Options();
+      final Option oo = Option.builder().argName(FILE_OPTION).longOpt(FILE_OPTION).type(String.class).hasArg().required(true).desc("file to compile").build();
+      options.addOption(oo);
+      /*
+       * parse
+       */
+      final CommandLineParser parser = new DefaultParser();
+      CommandLine cmd = null;
       try {
-         ZipFile zipfile = new ZipFile(FN);
-         for (Enumeration<ZipArchiveEntry> e = zipfile.getEntries(); e.hasMoreElements();) {
-            ZipArchiveEntry zipEntry = e.nextElement();
-            System.out.println(zipEntry.getName());
-            if (zipEntry.isDirectory() == false) {
-               if (zipEntry.getName().trim().toLowerCase().endsWith(".xml")) {
-                  InputStream inputStream = zipfile.getInputStream(zipEntry);
-                  OLMMessage olmMessage = OLMMessage.read(inputStream);
-                  System.out.println(olmMessage.getBody());
-               }
-            }
-         }
-         zipfile.close();
+         cmd = parser.parse(options, args);
       } catch (final Exception e) {
          e.printStackTrace();
+         final HelpFormatter formatter = new HelpFormatter();
+         formatter.printHelp("posix", options);
+         System.exit(0);
       }
+      /*
+       * get the file
+       */
+      final String filename = cmd.getOptionValue(FILE_OPTION);
+      if (null != filename) {
+         final OLMReader olmReader = new OLMReader();
+         OLMFile.readOLMFile(filename, olmReader, olmReader);
+      }
+   }
+
+   @Override
+   public void message(OLMMessage olmMessage) {
+      System.out.println(olmMessage.getBody());
+   }
+
+   @Override
+   public void message(String olmMessage) {
+      System.out.println(olmMessage);
    }
 }
