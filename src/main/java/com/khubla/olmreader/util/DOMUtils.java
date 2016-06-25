@@ -1,9 +1,16 @@
 package com.khubla.olmreader.util;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class DOMUtils {
+   private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
    public static Integer safeGetAttributeInteger(Node node, String name) {
       final Node n = node.getAttributes().getNamedItem(name);
       if (n != null) {
@@ -42,6 +49,17 @@ public class DOMUtils {
             } else {
                return false;
             }
+         }
+      }
+      return null;
+   }
+
+   public static Date safeGetElementDate(Node node, String name) throws DOMException, ParseException {
+      final NodeList nodeList = node.getChildNodes();
+      for (int i = 0; i < nodeList.getLength(); i++) {
+         final Node n = nodeList.item(i);
+         if (n.getNodeName().compareTo(name) == 0) {
+            return simpleDateFormat.parse(n.getTextContent());
          }
       }
       return null;

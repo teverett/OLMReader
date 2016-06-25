@@ -2,6 +2,7 @@ package com.khubla.olmreader.olm;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -29,8 +30,8 @@ public class OLMMessage {
                   /*
                    * basic message data
                    */
-                  ret.OPFMessageCopyModDate = DOMUtils.safeGetElementString(emailNode, "OPFMessageCopyModDate");
-                  ret.OPFMessageCopySentTime = DOMUtils.safeGetElementString(emailNode, "OPFMessageCopySentTime");
+                  ret.OPFMessageCopyModDate = DOMUtils.safeGetElementDate(emailNode, "OPFMessageCopyModDate");
+                  ret.OPFMessageCopySentTime = DOMUtils.safeGetElementDate(emailNode, "OPFMessageCopySentTime");
                   ret.OPFMessageGetCalendarAcceptStatus = DOMUtils.safeGetElementString(emailNode, "OPFMessageGetCalendarAcceptStatus");
                   ret.OPFMessageGetHasRichText = DOMUtils.safeGetElementBoolean(emailNode, "OPFMessageGetHasRichText");
                   ret.OPFMessageGetIsRead = DOMUtils.safeGetElementBoolean(emailNode, "OPFMessageGetIsRead");
@@ -127,8 +128,8 @@ public class OLMMessage {
       return new OLMMessageAttachment(OPFAttachmentContentExtension, OPFAttachmentContentFileSize, OPFAttachmentContentID, OPFAttachmentContentType, OPFAttachmentName, OPFAttachmentURL);
    }
 
-   private String OPFMessageCopyModDate;
-   private String OPFMessageCopySentTime;
+   private Date OPFMessageCopyModDate;
+   private Date OPFMessageCopySentTime;
    private String OPFMessageGetCalendarAcceptStatus;
    private Boolean OPFMessageGetHasRichText;
    private Boolean OPFMessageGetIsRead;
@@ -176,7 +177,7 @@ public class OLMMessage {
       return OPFMessageCopyMessageID;
    }
 
-   public String getOPFMessageCopyModDate() {
+   public Date getOPFMessageCopyModDate() {
       return OPFMessageCopyModDate;
    }
 
@@ -184,7 +185,7 @@ public class OLMMessage {
       return OPFMessageCopySenderAddress;
    }
 
-   public String getOPFMessageCopySentTime() {
+   public Date getOPFMessageCopySentTime() {
       return OPFMessageCopySentTime;
    }
 
