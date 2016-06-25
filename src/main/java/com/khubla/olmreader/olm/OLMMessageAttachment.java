@@ -2,13 +2,13 @@ package com.khubla.olmreader.olm;
 
 public class OLMMessageAttachment {
    private final String OPFAttachmentContentExtension;
-   private final String OPFAttachmentContentFileSize;
+   private final Integer OPFAttachmentContentFileSize;
    private final String OPFAttachmentContentID;
    private final String OPFAttachmentContentType;
    private final String OPFAttachmentName;
    private final String OPFAttachmentURL;
 
-   public OLMMessageAttachment(String oPFAttachmentContentExtension, String oPFAttachmentContentFileSize, String oPFAttachmentContentID, String oPFAttachmentContentType, String oPFAttachmentName,
+   public OLMMessageAttachment(String oPFAttachmentContentExtension, Integer oPFAttachmentContentFileSize, String oPFAttachmentContentID, String oPFAttachmentContentType, String oPFAttachmentName,
          String oPFAttachmentURL) {
       super();
       OPFAttachmentContentExtension = oPFAttachmentContentExtension;
@@ -23,7 +23,7 @@ public class OLMMessageAttachment {
       return OPFAttachmentContentExtension;
    }
 
-   public String getOPFAttachmentContentFileSize() {
+   public Integer getOPFAttachmentContentFileSize() {
       return OPFAttachmentContentFileSize;
    }
 

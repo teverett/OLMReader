@@ -34,7 +34,9 @@ public class OLMFile {
                   if (null != olmMessageCallback) {
                      final InputStream inputStream = zipfile.getInputStream(zipEntry);
                      final OLMMessage olmMessage = OLMMessage.read(inputStream);
-                     olmMessageCallback.message(olmMessage);
+                     if (null != olmMessage) {
+                        olmMessageCallback.message(olmMessage);
+                     }
                   }
                }
             }
