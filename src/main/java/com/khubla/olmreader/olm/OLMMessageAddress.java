@@ -3,9 +3,9 @@ package com.khubla.olmreader.olm;
 public class OLMMessageAddress {
    private final String OPFContactEmailAddressAddress;
    private final String OPFContactEmailAddressName;
-   private final String OPFContactEmailAddressType;
+   private final Integer OPFContactEmailAddressType;
 
-   public OLMMessageAddress(String oPFContactEmailAddressAddress, String oPFContactEmailAddressName, String oPFContactEmailAddressType) {
+   public OLMMessageAddress(String oPFContactEmailAddressAddress, String oPFContactEmailAddressName, Integer oPFContactEmailAddressType) {
       super();
       OPFContactEmailAddressAddress = oPFContactEmailAddressAddress;
       OPFContactEmailAddressName = oPFContactEmailAddressName;
@@ -20,7 +20,7 @@ public class OLMMessageAddress {
       return OPFContactEmailAddressName;
    }
 
-   public String getOPFContactEmailAddressType() {
+   public Integer getOPFContactEmailAddressType() {
       return OPFContactEmailAddressType;
    }
 }

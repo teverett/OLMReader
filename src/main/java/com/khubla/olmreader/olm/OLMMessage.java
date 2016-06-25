@@ -108,7 +108,7 @@ public class OLMMessage {
    private static OLMMessageAddress readOLMMessageAddress(Node node) {
       final String OPFContactEmailAddressAddress = DOMUtils.safeGetAttributeString(node, "OPFContactEmailAddressAddress");
       final String OPFContactEmailAddressName = DOMUtils.safeGetAttributeString(node, "OPFContactEmailAddressName");
-      final String OPFContactEmailAddressType = DOMUtils.safeGetAttributeString(node, "OPFContactEmailAddressType");
+      final Integer OPFContactEmailAddressType = DOMUtils.safeGetAttributeInteger(node, "OPFContactEmailAddressType");
       return new OLMMessageAddress(OPFContactEmailAddressAddress, OPFContactEmailAddressName, OPFContactEmailAddressType);
    }
 
