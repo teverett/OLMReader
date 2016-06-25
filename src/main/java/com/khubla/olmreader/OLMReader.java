@@ -1,6 +1,7 @@
 package com.khubla.olmreader;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -11,6 +12,7 @@ import org.apache.commons.cli.Options;
 
 import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessage;
+import com.khubla.olmreader.olm.OLMMessageAttachment;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
 
@@ -47,17 +49,34 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
       final String filename = cmd.getOptionValue(FILE_OPTION);
       if (null != filename) {
          final OLMReader olmReader = new OLMReader();
-         OLMFile.readOLMFile(filename, olmReader, olmReader);
+         olmReader.read(filename);
       }
    }
 
+   private OLMFile olmFile;
+
    @Override
    public void message(OLMMessage olmMessage) {
-      System.out.println(olmMessage.getOPFMessageCopyHTMLBody());
+      try {
+         System.out.println(olmMessage.getOPFMessageCopyHTMLBody());
+         final List<OLMMessageAttachment> attachments = olmMessage.getAttachments();
+         if (attachments != null) {
+            for (int i = 0; i < attachments.size(); i++) {
+               olmFile.readAttachment(attachments.get(i));
+            }
+         }
+      } catch (final Exception e) {
+         e.printStackTrace();
+      }
    }
 
    @Override
    public void message(String olmMessage) {
       System.out.println(olmMessage);
+   }
+
+   public void read(String filename) throws IOException {
+      olmFile = new OLMFile(filename);
+      olmFile.readOLMFile(this, this);
    }
 }
