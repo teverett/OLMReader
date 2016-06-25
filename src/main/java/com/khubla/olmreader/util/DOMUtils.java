@@ -1,4 +1,4 @@
-package com.khubla.olmreader.olm;
+package com.khubla.olmreader.util;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
