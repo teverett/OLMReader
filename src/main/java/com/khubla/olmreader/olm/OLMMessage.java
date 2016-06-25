@@ -34,6 +34,7 @@ public class OLMMessage {
                   ret.OPFMessageGetIsRead = DOMUtils.safeGetElementBoolean(emailNode, "OPFMessageGetIsRead");
                   ret.OPFMessageGetOverrideEncoding = DOMUtils.safeGetElementString(emailNode, "OPFMessageGetOverrideEncoding");
                   ret.OPFMessageGetPriority = DOMUtils.safeGetElementInteger(emailNode, "OPFMessageGetPriority");
+                  ret.OPFMessageCopyGetFlagStatus = DOMUtils.safeGetElementInteger(emailNode, "OPFMessageCopyGetFlagStatus");
                   ret.OPFMessageGetWasSent = DOMUtils.safeGetElementBoolean(emailNode, "OPFMessageGetWasSent");
                   ret.OPFMessageIsCalendarMessage = DOMUtils.safeGetElementBoolean(emailNode, "OPFMessageIsCalendarMessage");
                   ret.OPFMessageIsOutgoing = DOMUtils.safeGetElementBoolean(emailNode, "OPFMessageIsOutgoing");
@@ -44,6 +45,21 @@ public class OLMMessage {
                   ret.OPFMessageCopyBody = DOMUtils.safeGetElementString(emailNode, "OPFMessageCopyBody");
                   ret.OPFMessageCopyHTMLBody = DOMUtils.safeGetElementString(emailNode, "OPFMessageCopyHTMLBody");
                   /*
+                   * cc
+                   */
+                  final Node ccNode = DOMUtils.safeGetElement(emailNode, "OPFMessageCopyCCAddresses");
+                  if ((null != ccNode) && (ccNode.hasChildNodes())) {
+                     ret.OPFMessageCopyCCAddresses = new ArrayList<OLMMessageAddress>();
+                     final NodeList fromList = ccNode.getChildNodes();
+                     for (int i = 0; i < fromList.getLength(); i++) {
+                        final Node n = fromList.item(i);
+                        if (n.getNodeName().compareTo("emailAddress") == 0) {
+                           final OLMMessageAddress olmMessageAddress = readOLMMessageAddress(n);
+                           ret.OPFMessageCopyCCAddresses.add(olmMessageAddress);
+                        }
+                     }
+                  }
+                  /*
                    * from
                    */
                   final Node fromNode = DOMUtils.safeGetElement(emailNode, "OPFMessageCopyFromAddresses");
@@ -52,7 +68,6 @@ public class OLMMessage {
                      final NodeList fromList = fromNode.getChildNodes();
                      for (int i = 0; i < fromList.getLength(); i++) {
                         final Node n = fromList.item(i);
-                        System.out.println(n.getNodeName());
                         if (n.getNodeName().compareTo("emailAddress") == 0) {
                            final OLMMessageAddress olmMessageAddress = readOLMMessageAddress(n);
                            ret.OPFMessageCopyFromAddresses.add(olmMessageAddress);
@@ -126,8 +141,10 @@ public class OLMMessage {
    private String OPFMessageCopyBody;
    private String OPFMessageCopyHTMLBody;
    private Boolean OPFMessageGetHasHTML;
+   private Integer OPFMessageCopyGetFlagStatus;
    private List<OLMMessageAddress> OPFMessageCopyFromAddresses;
    private List<OLMMessageAttachment> attachments;
+   private List<OLMMessageAddress> OPFMessageCopyCCAddresses;
 
    public List<OLMMessageAttachment> getAttachments() {
       return attachments;
@@ -137,8 +154,16 @@ public class OLMMessage {
       return OPFMessageCopyBody;
    }
 
+   public List<OLMMessageAddress> getOPFMessageCopyCCAddresses() {
+      return OPFMessageCopyCCAddresses;
+   }
+
    public List<OLMMessageAddress> getOPFMessageCopyFromAddresses() {
       return OPFMessageCopyFromAddresses;
+   }
+
+   public Integer getOPFMessageCopyGetFlagStatus() {
+      return OPFMessageCopyGetFlagStatus;
    }
 
    public String getOPFMessageCopyHTMLBody() {

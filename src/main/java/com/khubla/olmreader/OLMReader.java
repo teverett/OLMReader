@@ -21,7 +21,7 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    private static final String FILE_OPTION = "file";
 
    public static void main(String[] args) throws IOException {
-      System.out.println("khubla.com kPascal Interpreter");
+      System.out.println("khubla.com OLM Reader");
       /*
        * options
        */
