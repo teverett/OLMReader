@@ -53,7 +53,7 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
 
    @Override
    public void message(OLMMessage olmMessage) {
-      System.out.println(olmMessage.getBody());
+      System.out.println(olmMessage.getOPFMessageCopyHTMLBody());
    }
 
    @Override

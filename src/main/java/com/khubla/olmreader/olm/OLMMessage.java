@@ -1,11 +1,14 @@
 package com.khubla.olmreader.olm;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class OLMMessage {
@@ -16,16 +19,30 @@ public class OLMMessage {
          final DocumentBuilder builder = factory.newDocumentBuilder();
          final Document document = builder.parse(inputStream);
          if (null != document) {
-            ret.emailAddress = safeGetElement(document, "emailAddress");
-            ret.fromAddress = safeGetElement(document, "OPFMessageCopySenderAddress");
-            final String isHTML = safeGetElement(document, "OPFMessageGetHasHTML");
+            /*
+             * basic message data
+             */
+            ret.emailAddress = DOMUtils.safeGetElement(document, "emailAddress");
+            ret.OPFMessageCopySenderAddress = DOMUtils.safeGetElement(document, "OPFMessageCopySenderAddress");
+            final String isHTML = DOMUtils.safeGetElement(document, "OPFMessageGetHasHTML");
             if ((null != isHTML) && (isHTML.compareTo("1") == 0)) {
-               ret.isHTML = true;
+               ret.OPFMessageGetHasHTML = true;
             } else {
-               ret.isHTML = false;
+               ret.OPFMessageGetHasHTML = false;
             }
-            ret.body = safeGetElement(document, "OPFMessageCopyBody");
-            ret.htmlBody = safeGetElement(document, "OPFMessageCopyHTMLBody");
+            ret.OPFMessageCopyBody = DOMUtils.safeGetElement(document, "OPFMessageCopyBody");
+            ret.OPFMessageCopyHTMLBody = DOMUtils.safeGetElement(document, "OPFMessageCopyHTMLBody");
+            /*
+             * attachments
+             */
+            final NodeList attachmentsList = document.getElementsByTagName("messageAttachment");
+            if ((null != attachmentsList) && (attachmentsList.getLength() > 0)) {
+               ret.attachments = new ArrayList<OLMMessageAttachment>();
+               for (int i = 0; i < attachmentsList.getLength(); i++) {
+                  final OLMMessageAttachment olmMessageAttachment = readAttachment(attachmentsList.item(i));
+                  ret.attachments.add(olmMessageAttachment);
+               }
+            }
          }
          return ret;
       } catch (final Exception e) {
@@ -34,37 +51,47 @@ public class OLMMessage {
       }
    }
 
-   private static String safeGetElement(Document document, String name) {
-      final NodeList nodeList = document.getElementsByTagName(name);
-      if ((null != nodeList) && (nodeList.getLength() > 0)) {
-         return nodeList.item(0).getTextContent();
-      }
-      return null;
+   /**
+    * read an attachment
+    */
+   private static OLMMessageAttachment readAttachment(Node node) {
+      final String OPFAttachmentContentExtension = DOMUtils.safeGetAttribute(node, "OPFAttachmentContentExtension");
+      final String OPFAttachmentContentFileSize = DOMUtils.safeGetAttribute(node, "OPFAttachmentContentFileSize");
+      final String OPFAttachmentContentID = DOMUtils.safeGetAttribute(node, "OPFAttachmentContentID");
+      final String OPFAttachmentContentType = DOMUtils.safeGetAttribute(node, "OPFAttachmentContentType");
+      final String OPFAttachmentName = DOMUtils.safeGetAttribute(node, "OPFAttachmentName");
+      final String OPFAttachmentURL = DOMUtils.safeGetAttribute(node, "OPFAttachmentURL");
+      return new OLMMessageAttachment(OPFAttachmentContentExtension, OPFAttachmentContentFileSize, OPFAttachmentContentID, OPFAttachmentContentType, OPFAttachmentName, OPFAttachmentURL);
    }
 
    private String emailAddress;
-   private String fromAddress;
-   private String body;
-   private String htmlBody;
-   private boolean isHTML;
+   private String OPFMessageCopySenderAddress;
+   private String OPFMessageCopyBody;
+   private String OPFMessageCopyHTMLBody;
+   private boolean OPFMessageGetHasHTML;
+   private List<OLMMessageAttachment> attachments;
 
-   public String getBody() {
-      return body;
+   public List<OLMMessageAttachment> getAttachments() {
+      return attachments;
    }
 
    public String getEmailAddress() {
       return emailAddress;
    }
 
-   public String getFromAddress() {
-      return fromAddress;
+   public String getOPFMessageCopyBody() {
+      return OPFMessageCopyBody;
    }
 
-   public String getHtmlBody() {
-      return htmlBody;
+   public String getOPFMessageCopyHTMLBody() {
+      return OPFMessageCopyHTMLBody;
    }
 
-   public boolean isHTML() {
-      return isHTML;
+   public String getOPFMessageCopySenderAddress() {
+      return OPFMessageCopySenderAddress;
+   }
+
+   public boolean isOPFMessageGetHasHTML() {
+      return OPFMessageGetHasHTML;
    }
 }
