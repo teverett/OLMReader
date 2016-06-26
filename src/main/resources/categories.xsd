@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="unqualified">
+	<xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace" />
+	<xs:element name="categories">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="category" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="OPFCategoryCopyBackgroundColor" type="xs:string" />
+						<xs:attribute name="OPFCategoryCopyName" type="xs:string" />
+						<xs:attribute ref="xml:space" use="optional" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="elementCount" type="xs:integer" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

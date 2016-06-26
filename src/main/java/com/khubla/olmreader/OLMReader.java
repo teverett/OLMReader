@@ -13,6 +13,7 @@ import org.apache.commons.cli.Options;
 import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
+import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Emails;
 
 public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
@@ -53,6 +54,11 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    }
 
    private OLMFile olmFile;
+
+   @Override
+   public void categories(Categories categories) {
+      System.out.println(categories.getCategory().size());
+   }
 
    @Override
    public void message(Emails.Email email) {
