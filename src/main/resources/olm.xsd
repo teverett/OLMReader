@@ -1,33 +1,171 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd" />
 	<xs:element name="emails">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="email" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
-							<xs:element name="OPFMessageCopyModDate" type="xs:string" />
-							<xs:element name="OPFMessageCopySentTime" type="xs:string" />
-							<xs:element name="OPFMessageGetCalendarAcceptStatus" type="xs:string" />
-							<xs:element name="OPFMessageGetHasRichText" type="xs:boolean" />
-							<xs:element name="OPFMessageGetIsRead" type="xs:boolean" />
-							<xs:element name="OPFMessageGetOverrideEncoding" type="xs:string" />
-							<xs:element name="OPFMessageGetPriority" type="xs:integer" />
-							<xs:element name="OPFMessageCopyGetFlagStatus" type="xs:string" />
-							<xs:element name="OPFMessageGetWasSent" type="xs:boolean" />
-							<xs:element name="OPFMessageIsCalendarMessage" type="xs:boolean" />
-							<xs:element name="OPFMessageIsOutgoing" type="xs:boolean" />
-							<xs:element name="OPFMessageIsOutgoingMeetingResponse" type="xs:boolean" />
-							<xs:element name="OPFMessageCopyMessageID" type="xs:string" />
-							<xs:element name="OPFMessageCopySenderAddress" type="xs:string" />
-							<xs:element name="OPFMessageGetHasHTML" type="xs:boolean" />
-							<xs:element name="OPFMessageCopyBody" type="xs:string" />
-							<xs:element name="OPFMessageCopyHTMLBody" type="xs:string" />
+							<xs:element name="OPFMessageCopyModDate">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopySentTime">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetCalendarAcceptStatus">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetHasRichText">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetIsRead">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetOverrideEncoding">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetPriority">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:integer">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyGetFlagStatus">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetWasSent">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageIsCalendarMessage">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageIsOutgoing">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageIsOutgoingMeetingResponse">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyMessageID">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopySenderAddress">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetHasHTML">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyBody">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyHTMLBody">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFMessageCopyFromAddresses">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
+									<xs:attribute ref="xml:space" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopyCCAddresses">
@@ -35,6 +173,7 @@
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
+									<xs:attribute ref="xml:space" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopyAttachmentList">
@@ -50,24 +189,27 @@
 													<xs:element name="OPFAttachmentName" type="xs:string" />
 													<xs:element name="OPFAttachmentURL" type="xs:string" />
 												</xs:sequence>
+												<xs:attribute ref="xml:space" />
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 						</xs:all>
+						<xs:attribute ref="xml:space" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
+			<xs:attribute ref="xml:space" />
+			<xs:attribute name="elementCount" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="emailAddress">
 		<xs:complexType>
-			<xs:all>
-				<xs:element name="OPFContactEmailAddressAddress" type="xs:string" />
-				<xs:element name="OPFContactEmailAddressName" type="xs:string" />
-				<xs:element name="OPFContactEmailAddressType" type="xs:integer" />
-			</xs:all>
+			<xs:attribute ref="xml:space" />
+			<xs:attribute name="OPFContactEmailAddressAddress" type="xs:string" />
+			<xs:attribute name="OPFContactEmailAddressName" type="xs:string" />
+			<xs:attribute name="OPFContactEmailAddressType" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
