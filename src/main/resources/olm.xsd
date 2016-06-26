@@ -7,7 +7,7 @@
 				<xs:element name="email" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
-							<xs:element name="OPFMessageCopyModDate">
+							<xs:element name="OPFMessageCopyMeetingData" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -16,7 +16,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopySentTime">
+							<xs:element name="OPFMessageCopyReferences" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -25,7 +25,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetCalendarAcceptStatus">
+							<xs:element name="OPFMessageCopyInReplyTo" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -34,7 +34,94 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetHasRichText">
+							<xs:element name="OPFMessageCopyReplyToAddresses" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
+									</xs:sequence>
+									<xs:attribute ref="xml:space" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopySenderAddress" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
+									</xs:sequence>
+									<xs:attribute ref="xml:space" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyToAddresses" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
+									</xs:sequence>
+									<xs:attribute ref="xml:space" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyThreadTopic" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyDueDateTime" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyStartDateTime" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyModDate" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopySentTime" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyReceivedTime" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetCalendarAcceptStatus" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetHasRichText" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
@@ -43,7 +130,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetIsRead">
+							<xs:element name="OPFMessageGetIsRead" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
@@ -52,7 +139,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetOverrideEncoding">
+							<xs:element name="OPFMessageGetOverrideEncoding" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -61,7 +148,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetPriority">
+							<xs:element name="OPFMessageGetPriority" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:integer">
@@ -70,7 +157,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyGetFlagStatus">
+							<xs:element name="OPFMessageCopySubject" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -79,43 +166,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetWasSent">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="OPFMessageIsCalendarMessage">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="OPFMessageIsOutgoing">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="OPFMessageIsOutgoingMeetingResponse">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="OPFMessageCopyMessageID">
+							<xs:element name="OPFMessageCopyGetFlagStatus" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -124,16 +175,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopySenderAddress" minOccurs="0">
-								<xs:complexType>
-									<xs:simpleContent>
-										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
-										</xs:extension>
-									</xs:simpleContent>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="OPFMessageGetHasHTML">
+							<xs:element name="OPFMessageGetWasSent" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
@@ -142,7 +184,34 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyBody">
+							<xs:element name="OPFMessageIsCalendarMessage" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageIsOutgoing" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageIsOutgoingMeetingResponse" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyMessageID" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -151,7 +220,26 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyHTMLBody">
+
+							<xs:element name="OPFMessageGetHasHTML" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:boolean">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyBody" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyHTMLBody" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -181,18 +269,17 @@
 									<xs:sequence>
 										<xs:element name="messageAttachment" maxOccurs="unbounded">
 											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="OPFAttachmentContentExtension" type="xs:string" />
-													<xs:element name="OPFAttachmentContentFileSize" type="xs:integer" />
-													<xs:element name="OPFAttachmentContentID" type="xs:string" />
-													<xs:element name="OPFAttachmentContentType" type="xs:string" />
-													<xs:element name="OPFAttachmentName" type="xs:string" />
-													<xs:element name="OPFAttachmentURL" type="xs:string" />
-												</xs:sequence>
+												<xs:attribute name="OPFAttachmentContentExtension" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentFileSize" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentID" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentType" type="xs:string" />
+												<xs:attribute name="OPFAttachmentName" type="xs:string" />
+												<xs:attribute name="OPFAttachmentURL" type="xs:string" />
 												<xs:attribute ref="xml:space" />
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
+									<xs:attribute ref="xml:space" />
 								</xs:complexType>
 							</xs:element>
 						</xs:all>
