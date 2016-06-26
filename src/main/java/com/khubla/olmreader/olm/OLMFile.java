@@ -27,6 +27,10 @@ public class OLMFile {
     * the zip
     */
    private final ZipFile zipfile;
+   /**
+    * categories.xml
+    */
+   private final String CATEGORIES_XML = "Categories.xml";
 
    public OLMFile(String filename) throws IOException {
       zipfile = new ZipFile(filename);
@@ -49,32 +53,34 @@ public class OLMFile {
             System.out.println(zipEntry.getName());
             if (zipEntry.isDirectory() == false) {
                if (zipEntry.getName().trim().toLowerCase().endsWith(XML)) {
-                  /*
-                   * raw callback
-                   */
-                  if (null != olmRawMessageCallback) {
-                     final InputStream inputStream = zipfile.getInputStream(zipEntry);
-                     final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                     IOUtils.copy(inputStream, baos);
-                     olmRawMessageCallback.message(baos.toString());
-                  }
-                  /*
-                   * message callback
-                   */
-                  if (null != olmMessageCallback) {
-                     final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
-                     final InputStream schemaInputStream = OLMFile.class.getResourceAsStream(SCHEMA);
-                     final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class, schemaInputStream);
-                     Emails emails = null;
-                     try {
-                        emails = marshaller.unmarshall(zipInputStream);
-                     } catch (final Exception ex) {
-                        // ex.printStackTrace();
+                  if (zipEntry.getName().compareTo(CATEGORIES_XML) != 0) {
+                     /*
+                      * raw callback
+                      */
+                     if (null != olmRawMessageCallback) {
+                        final InputStream inputStream = zipfile.getInputStream(zipEntry);
+                        final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        IOUtils.copy(inputStream, baos);
+                        olmRawMessageCallback.message(baos.toString());
                      }
-                     if ((null != emails) && (null != emails.getEmail())) {
-                        for (int i = 0; i < emails.getEmail().size(); i++) {
-                           final Email email = emails.getEmail().get(i);
-                           olmMessageCallback.message(email);
+                     /*
+                      * message callback
+                      */
+                     if (null != olmMessageCallback) {
+                        final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
+                        final InputStream schemaInputStream = OLMFile.class.getResourceAsStream(SCHEMA);
+                        final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class, schemaInputStream);
+                        Emails emails = null;
+                        try {
+                           emails = marshaller.unmarshall(zipInputStream);
+                        } catch (final Exception ex) {
+                           ex.printStackTrace();
+                        }
+                        if ((null != emails) && (null != emails.getEmail())) {
+                           for (int i = 0; i < emails.getEmail().size(); i++) {
+                              final Email email = emails.getEmail().get(i);
+                              olmMessageCallback.message(email);
+                           }
                         }
                      }
                   }
