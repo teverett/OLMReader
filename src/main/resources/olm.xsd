@@ -124,7 +124,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopySenderAddress">
+							<xs:element name="OPFMessageCopySenderAddress" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -160,7 +160,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyFromAddresses">
+							<xs:element name="OPFMessageCopyFromAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
@@ -168,7 +168,7 @@
 									<xs:attribute ref="xml:space" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyCCAddresses">
+							<xs:element name="OPFMessageCopyCCAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
@@ -176,7 +176,7 @@
 									<xs:attribute ref="xml:space" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyAttachmentList">
+							<xs:element name="OPFMessageCopyAttachmentList" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="messageAttachment" maxOccurs="unbounded">
