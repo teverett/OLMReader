@@ -3,6 +3,9 @@ package com.khubla.olmreader.olm;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.zip.ZipException;
 
@@ -35,11 +38,28 @@ public class OLMFile {
     * categories.xml
     */
    private final String CATEGORIES_XML = "Categories.xml";
+   /**
+    * date format
+    */
+   private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
+   /**
+    * ctor
+    */
    public OLMFile(String filename) throws IOException {
       zipfile = new ZipFile(filename);
    }
 
+   /**
+    * parse the date format the OLM uses
+    */
+   public Date parseOLMDate(String date) throws ParseException {
+      return simpleDateFormat.parse(date);
+   }
+
+   /**
+    * read an attachment
+    */
    public byte[] readAttachment(Emails.Email.OPFMessageCopyAttachmentList.MessageAttachment messageAttachment) throws ZipException, IOException {
       final ZipArchiveEntry zipEntry = zipfile.getEntry(messageAttachment.getOPFAttachmentURL());
       if (null != zipEntry) {
@@ -50,6 +70,9 @@ public class OLMFile {
       return null;
    }
 
+   /**
+    * read OLM file
+    */
    public void readOLMFile(OLMMessageCallback olmMessageCallback, OLMRawMessageCallback olmRawMessageCallback) {
       try {
          for (final Enumeration<ZipArchiveEntry> e = zipfile.getEntries(); e.hasMoreElements();) {

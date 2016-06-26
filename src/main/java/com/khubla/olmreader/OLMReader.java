@@ -72,7 +72,7 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
 
    @Override
    public void rawMessage(String olmMessage) {
-      System.out.println(olmMessage);
+      // System.out.println(olmMessage);
    }
 
    public void read(String filename) throws IOException {
