@@ -75,8 +75,11 @@ public class OLMFile {
                         final InputStream olmSchemaInputStream = OLMFile.class.getResourceAsStream(OLM_SCHEMA);
                         final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
                         Source[] sources = new StreamSource[2];
-                        sources[0] = new StreamSource(olmSchemaInputStream);
-                        sources[1] = new StreamSource(xmlSchemaInputStream);
+                        /*
+                         * order is important here. JaxB needs to see xml.xsd before olm.xsd
+                         */
+                        sources[0] = new StreamSource(xmlSchemaInputStream);
+                        sources[1] = new StreamSource(olmSchemaInputStream);
                         final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class, sources);
                         Emails emails = null;
                         try {
