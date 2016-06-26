@@ -65,7 +65,7 @@ public class OLMFile {
                         final InputStream inputStream = zipfile.getInputStream(zipEntry);
                         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
                         IOUtils.copy(inputStream, baos);
-                        olmRawMessageCallback.message(baos.toString());
+                        olmRawMessageCallback.rawMessage(baos.toString());
                      }
                      /*
                       * message callback
@@ -74,7 +74,7 @@ public class OLMFile {
                         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
                         final InputStream olmSchemaInputStream = OLMFile.class.getResourceAsStream(OLM_SCHEMA);
                         final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
-                        Source[] sources = new StreamSource[2];
+                        final Source[] sources = new StreamSource[2];
                         /*
                          * order is important here. JaxB needs to see xml.xsd before olm.xsd
                          */

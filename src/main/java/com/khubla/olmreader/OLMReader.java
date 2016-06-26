@@ -57,8 +57,6 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    @Override
    public void message(Emails.Email email) {
       try {
-         System.out.println(email.getOPFMessageCopyHTMLBody());
-         System.out.println(email.getOPFMessageCopyFromAddresses().getEmailAddress().get(0).getOPFContactEmailAddressAddress());
          if (null != email.getOPFMessageCopyAttachmentList()) {
             final List<Emails.Email.OPFMessageCopyAttachmentList.MessageAttachment> attachments = email.getOPFMessageCopyAttachmentList().getMessageAttachment();
             if (attachments != null) {
@@ -73,7 +71,7 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    }
 
    @Override
-   public void message(String olmMessage) {
+   public void rawMessage(String olmMessage) {
       System.out.println(olmMessage);
    }
 
