@@ -73,7 +73,7 @@
 					<sourceRoot>${basedir}/src/main/java</sourceRoot>
 					<xsdOptions>
 						<xsdOption>
-							<xsd>${basedir}/src/main/xsd/olm.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/olm.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 					</xsdOptions>

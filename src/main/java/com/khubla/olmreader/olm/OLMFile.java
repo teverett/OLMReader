@@ -15,8 +15,18 @@ import com.khubla.olmreader.olm.generated.Emails.Email;
 import com.khubla.olmreader.util.GenericJAXBMarshaller;
 
 public class OLMFile {
+   /**
+    * XML extension
+    */
    private static final String XML = ".xml";
-   final ZipFile zipfile;
+   /**
+    * schema
+    */
+   private static final String SCHEMA = "/olm.xsd";
+   /**
+    * the zip
+    */
+   private final ZipFile zipfile;
 
    public OLMFile(String filename) throws IOException {
       zipfile = new ZipFile(filename);
@@ -52,11 +62,12 @@ public class OLMFile {
                    * message callback
                    */
                   if (null != olmMessageCallback) {
-                     final InputStream inputStream = zipfile.getInputStream(zipEntry);
-                     final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class);
+                     final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
+                     final InputStream schemaInputStream = OLMFile.class.getResourceAsStream(SCHEMA);
+                     final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class, schemaInputStream);
                      Emails emails = null;
                      try {
-                        emails = marshaller.unmarshall(inputStream);
+                        emails = marshaller.unmarshall(zipInputStream);
                      } catch (final Exception ex) {
                         // ex.printStackTrace();
                      }
