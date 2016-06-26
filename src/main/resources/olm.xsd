@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
-	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd" />
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="unqualified">
+	<xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace" />
 	<xs:element name="emails">
 		<xs:complexType>
 			<xs:sequence>
@@ -11,7 +11,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -20,7 +20,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -29,7 +29,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -39,7 +39,7 @@
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
-									<xs:attribute ref="xml:space" />
+									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopySenderAddress" minOccurs="0">
@@ -47,7 +47,7 @@
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
-									<xs:attribute ref="xml:space" />
+									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopyToAddresses" minOccurs="0">
@@ -55,14 +55,14 @@
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
-									<xs:attribute ref="xml:space" />
+									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopyThreadTopic" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -71,7 +71,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -80,7 +80,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -89,7 +89,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -98,7 +98,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -107,7 +107,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -116,7 +116,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -125,7 +125,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -134,7 +134,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -143,7 +143,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -152,7 +152,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:integer">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -161,7 +161,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -170,7 +170,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -179,7 +179,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -188,7 +188,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -197,7 +197,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -206,7 +206,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -215,7 +215,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -225,7 +225,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -234,7 +234,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -243,7 +243,7 @@
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
-											<xs:attribute ref="xml:space" />
+											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
@@ -253,7 +253,7 @@
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
-									<xs:attribute ref="xml:space" />
+									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopyCCAddresses" minOccurs="0">
@@ -261,7 +261,7 @@
 									<xs:sequence>
 										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
-									<xs:attribute ref="xml:space" />
+									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="OPFMessageCopyAttachmentList" minOccurs="0">
@@ -275,25 +275,25 @@
 												<xs:attribute name="OPFAttachmentContentType" type="xs:string" />
 												<xs:attribute name="OPFAttachmentName" type="xs:string" />
 												<xs:attribute name="OPFAttachmentURL" type="xs:string" />
-												<xs:attribute ref="xml:space" />
+												<xs:attribute ref="xml:space" use="optional" />
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
-									<xs:attribute ref="xml:space" />
+									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
 						</xs:all>
-						<xs:attribute ref="xml:space" />
+						<xs:attribute ref="xml:space" use="optional" />
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
-			<xs:attribute ref="xml:space" />
+			<xs:attribute ref="xml:space" use="optional" />
 			<xs:attribute name="elementCount" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="emailAddress">
 		<xs:complexType>
-			<xs:attribute ref="xml:space" />
+			<xs:attribute ref="xml:space" use="optional" />
 			<xs:attribute name="OPFContactEmailAddressAddress" type="xs:string" />
 			<xs:attribute name="OPFContactEmailAddressName" type="xs:string" />
 			<xs:attribute name="OPFContactEmailAddressType" type="xs:integer" />

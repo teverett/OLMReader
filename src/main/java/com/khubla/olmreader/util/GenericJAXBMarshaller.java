@@ -9,7 +9,7 @@ import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.stream.StreamSource;
+import javax.xml.transform.Source;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
@@ -39,10 +39,10 @@ public class GenericJAXBMarshaller<T> {
    /**
     * ctor
     */
-   public GenericJAXBMarshaller(Class<T> persistentClass, InputStream schemaStream) throws SAXException {
+   public GenericJAXBMarshaller(Class<T> persistentClass, Source[] schemas) throws SAXException {
       this.persistentClass = persistentClass;
       final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-      this.schema = schemaFactory.newSchema(new StreamSource(schemaStream));
+      this.schema = schemaFactory.newSchema(schemas);
    }
 
    /**

@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.util.Enumeration;
 import java.util.zip.ZipException;
 
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.compress.utils.IOUtils;
@@ -20,9 +23,10 @@ public class OLMFile {
     */
    private static final String XML = ".xml";
    /**
-    * schema
+    * schemas
     */
-   private static final String SCHEMA = "/olm.xsd";
+   private static final String OLM_SCHEMA = "/olm.xsd";
+   private static final String XML_SCHEMA = "/xml.xsd";
    /**
     * the zip
     */
@@ -68,8 +72,12 @@ public class OLMFile {
                       */
                      if (null != olmMessageCallback) {
                         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
-                        final InputStream schemaInputStream = OLMFile.class.getResourceAsStream(SCHEMA);
-                        final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class, schemaInputStream);
+                        final InputStream olmSchemaInputStream = OLMFile.class.getResourceAsStream(OLM_SCHEMA);
+                        final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
+                        Source[] sources = new StreamSource[2];
+                        sources[0] = new StreamSource(olmSchemaInputStream);
+                        sources[1] = new StreamSource(xmlSchemaInputStream);
+                        final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class, sources);
                         Emails emails = null;
                         try {
                            emails = marshaller.unmarshall(zipInputStream);
