@@ -10,6 +10,11 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.compress.utils.IOUtils;
 
+import com.khubla.olmreader.olm.generated.Email;
+import com.khubla.olmreader.olm.generated.Emails;
+import com.khubla.olmreader.olm.generated.MessageAttachment;
+import com.khubla.olmreader.util.GenericJAXBMarshaller;
+
 public class OLMFile {
    private static final String XML = ".xml";
    final ZipFile zipfile;
@@ -18,8 +23,8 @@ public class OLMFile {
       zipfile = new ZipFile(filename);
    }
 
-   public byte[] readAttachment(OLMMessageAttachment olmMessageAttachment) throws ZipException, IOException {
-      final ZipArchiveEntry zipEntry = zipfile.getEntry(olmMessageAttachment.getOPFAttachmentURL());
+   public byte[] readAttachment(MessageAttachment messageAttachment) throws ZipException, IOException {
+      final ZipArchiveEntry zipEntry = zipfile.getEntry(messageAttachment.getOPFAttachmentURL());
       if (null != zipEntry) {
          final ByteArrayOutputStream boas = new ByteArrayOutputStream();
          IOUtils.copy(zipfile.getInputStream(zipEntry), boas);
@@ -49,9 +54,18 @@ public class OLMFile {
                    */
                   if (null != olmMessageCallback) {
                      final InputStream inputStream = zipfile.getInputStream(zipEntry);
-                     final OLMMessage olmMessage = OLMMessage.read(inputStream);
-                     if (null != olmMessage) {
-                        olmMessageCallback.message(olmMessage);
+                     final GenericJAXBMarshaller<Emails> marshaller = new GenericJAXBMarshaller<Emails>(Emails.class);
+                     Emails emails = null;
+                     try {
+                        emails = marshaller.unmarshall(inputStream);
+                     } catch (Exception ex) {
+                        // ex.printStackTrace();
+                     }
+                     if ((null != emails) && (null != emails.getEmail())) {
+                        for (int i = 0; i < emails.getEmail().size(); i++) {
+                           final Email email = emails.getEmail().get(i);
+                           olmMessageCallback.message(email);
+                        }
                      }
                   }
                }
