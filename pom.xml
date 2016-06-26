@@ -59,20 +59,24 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jaxb2-maven-plugin</artifactId>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-xjc-plugin</artifactId>
+				<version>3.0.4</version>
 				<executions>
 					<execution>
-						<id>xjc</id>
 						<goals>
-							<goal>xjc</goal>
+							<goal>xsdtojava</goal>
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
-					<outputDirectory>${basedir}/src/main/java</outputDirectory>
-					<clearOutputDir>false</clearOutputDir>
-					<packageName>com.khubla.olmreader.olm.generated</packageName>
+					<sourceRoot>${basedir}/src/main/java</sourceRoot>
+					<xsdOptions>
+						<xsdOption>
+							<xsd>${basedir}/src/main/xsd/olm.xsd</xsd>
+							<packagename>com.khubla.olmreader.olm.generated</packagename>
+						</xsdOption>
+					</xsdOptions>
 				</configuration>
 			</plugin>
 		</plugins>

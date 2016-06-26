@@ -10,9 +10,8 @@ import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.compress.utils.IOUtils;
 
-import com.khubla.olmreader.olm.generated.Email;
 import com.khubla.olmreader.olm.generated.Emails;
-import com.khubla.olmreader.olm.generated.MessageAttachment;
+import com.khubla.olmreader.olm.generated.Emails.Email;
 import com.khubla.olmreader.util.GenericJAXBMarshaller;
 
 public class OLMFile {
@@ -23,7 +22,7 @@ public class OLMFile {
       zipfile = new ZipFile(filename);
    }
 
-   public byte[] readAttachment(MessageAttachment messageAttachment) throws ZipException, IOException {
+   public byte[] readAttachment(Emails.Email.OPFMessageCopyAttachmentList.MessageAttachment messageAttachment) throws ZipException, IOException {
       final ZipArchiveEntry zipEntry = zipfile.getEntry(messageAttachment.getOPFAttachmentURL());
       if (null != zipEntry) {
          final ByteArrayOutputStream boas = new ByteArrayOutputStream();
@@ -58,7 +57,7 @@ public class OLMFile {
                      Emails emails = null;
                      try {
                         emails = marshaller.unmarshall(inputStream);
-                     } catch (Exception ex) {
+                     } catch (final Exception ex) {
                         // ex.printStackTrace();
                      }
                      if ((null != emails) && (null != emails.getEmail())) {

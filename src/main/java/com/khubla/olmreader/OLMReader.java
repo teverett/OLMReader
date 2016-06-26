@@ -13,8 +13,7 @@ import org.apache.commons.cli.Options;
 import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
-import com.khubla.olmreader.olm.generated.Email;
-import com.khubla.olmreader.olm.generated.MessageAttachment;
+import com.khubla.olmreader.olm.generated.Emails;
 
 public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    /**
@@ -56,12 +55,12 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    private OLMFile olmFile;
 
    @Override
-   public void message(Email email) {
+   public void message(Emails.Email email) {
       try {
          System.out.println(email.getOPFMessageCopyHTMLBody());
          System.out.println(email.getOPFMessageCopyFromAddresses().getEmailAddress().get(0).getOPFContactEmailAddressAddress());
          if (null != email.getOPFMessageCopyAttachmentList()) {
-            final List<MessageAttachment> attachments = email.getOPFMessageCopyAttachmentList().getMessageAttachment();
+            final List<Emails.Email.OPFMessageCopyAttachmentList.MessageAttachment> attachments = email.getOPFMessageCopyAttachmentList().getMessageAttachment();
             if (attachments != null) {
                for (int i = 0; i < attachments.size(); i++) {
                   olmFile.readAttachment(attachments.get(i));

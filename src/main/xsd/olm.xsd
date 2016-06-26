@@ -3,76 +3,71 @@
 	<xs:element name="emails">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="email" maxOccurs="unbounded"  />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="email">
-		<xs:complexType>
-			<xs:all>
-				<xs:element name="OPFMessageCopyModDate" type="xs:string"  />
-				<xs:element name="OPFMessageCopySentTime" type="xs:string"  />
-				<xs:element name="OPFMessageGetCalendarAcceptStatus" type="xs:string"  />
-				<xs:element name="OPFMessageGetHasRichText" type="xs:boolean"  />
-				<xs:element name="OPFMessageGetIsRead" type="xs:boolean"  />
-				<xs:element name="OPFMessageGetOverrideEncoding" type="xs:string"  />
-				<xs:element name="OPFMessageGetPriority" type="xs:integer"  />
-				<xs:element name="OPFMessageCopyGetFlagStatus" type="xs:string"  />
-				<xs:element name="OPFMessageGetWasSent" type="xs:boolean"  />
-				<xs:element name="OPFMessageIsCalendarMessage" type="xs:boolean"  />
-				<xs:element name="OPFMessageIsOutgoing" type="xs:boolean"  />
-				<xs:element name="OPFMessageIsOutgoingMeetingResponse" type="xs:boolean"  />
-				<xs:element name="OPFMessageCopyMessageID" type="xs:string"  />
-				<xs:element name="OPFMessageCopySenderAddress" type="xs:string"  />
-				<xs:element name="OPFMessageGetHasHTML" type="xs:boolean"  />
-				<xs:element name="OPFMessageCopyBody" type="xs:string"  />
-				<xs:element name="OPFMessageCopyHTMLBody" type="xs:string"  />
-				<xs:element ref="OPFMessageCopyCCAddresses"  />
-				<xs:element ref="OPFMessageCopyFromAddresses"  />
-				<xs:element ref="OPFMessageCopyAttachmentList"  />
-			</xs:all>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="OPFMessageCopyCCAddresses">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="emailAddress" maxOccurs="unbounded" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="OPFMessageCopyFromAddresses">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="emailAddress" maxOccurs="unbounded" />
-			</xs:sequence>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="OPFMessageCopyAttachmentList">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="messageAttachment" maxOccurs="unbounded" />
+				<xs:element name="email" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="OPFMessageCopyModDate" type="xs:string" />
+							<xs:element name="OPFMessageCopySentTime" type="xs:string" />
+							<xs:element name="OPFMessageGetCalendarAcceptStatus" type="xs:string" />
+							<xs:element name="OPFMessageGetHasRichText" type="xs:boolean" />
+							<xs:element name="OPFMessageGetIsRead" type="xs:boolean" />
+							<xs:element name="OPFMessageGetOverrideEncoding" type="xs:string" />
+							<xs:element name="OPFMessageGetPriority" type="xs:integer" />
+							<xs:element name="OPFMessageCopyGetFlagStatus" type="xs:string" />
+							<xs:element name="OPFMessageGetWasSent" type="xs:boolean" />
+							<xs:element name="OPFMessageIsCalendarMessage" type="xs:boolean" />
+							<xs:element name="OPFMessageIsOutgoing" type="xs:boolean" />
+							<xs:element name="OPFMessageIsOutgoingMeetingResponse" type="xs:boolean" />
+							<xs:element name="OPFMessageCopyMessageID" type="xs:string" />
+							<xs:element name="OPFMessageCopySenderAddress" type="xs:string" />
+							<xs:element name="OPFMessageGetHasHTML" type="xs:boolean" />
+							<xs:element name="OPFMessageCopyBody" type="xs:string" />
+							<xs:element name="OPFMessageCopyHTMLBody" type="xs:string" />
+							<xs:element name="OPFMessageCopyFromAddresses">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyCCAddresses">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageCopyAttachmentList">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="messageAttachment" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="OPFAttachmentContentExtension" type="xs:string" />
+													<xs:element name="OPFAttachmentContentFileSize" type="xs:integer" />
+													<xs:element name="OPFAttachmentContentID" type="xs:string" />
+													<xs:element name="OPFAttachmentContentType" type="xs:string" />
+													<xs:element name="OPFAttachmentName" type="xs:string" />
+													<xs:element name="OPFAttachmentURL" type="xs:string" />
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="emailAddress">
 		<xs:complexType>
 			<xs:all>
-				<xs:element name="OPFContactEmailAddressAddress" type="xs:string"  />
-				<xs:element name="OPFContactEmailAddressName" type="xs:string"  />
-				<xs:element name="OPFContactEmailAddressType" type="xs:integer"  />
+				<xs:element name="OPFContactEmailAddressAddress" type="xs:string" />
+				<xs:element name="OPFContactEmailAddressName" type="xs:string" />
+				<xs:element name="OPFContactEmailAddressType" type="xs:integer" />
 			</xs:all>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="messageAttachment">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="OPFAttachmentContentExtension" type="xs:string"  />
-				<xs:element name="OPFAttachmentContentFileSize" type="xs:integer"  />
-				<xs:element name="OPFAttachmentContentID" type="xs:string"  />
-				<xs:element name="OPFAttachmentContentType" type="xs:string"  />
-				<xs:element name="OPFAttachmentName" type="xs:string"  />
-				<xs:element name="OPFAttachmentURL" type="xs:string"  />
-			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
