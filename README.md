@@ -4,6 +4,16 @@ A java library for reading MS Outlook for Mac [OLM](https://support.office.com/e
 
 Schema for OLM XML is can be found [here](https://github.com/teverett/OLMReader/blob/master/src/main/resources/olm.xsd)
 
+Maven Coordinates
+-------------------
+
+```
+<groupId>com.khubla.olmreader</groupId>
+<artifactId>olmreader</artifactId>
+<version>1.0</version>
+<packaging>jar</packaging>
+```
+
 Travis Status
 ---------
 
