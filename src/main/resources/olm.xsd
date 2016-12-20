@@ -240,6 +240,15 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
+							<xs:element name="OPFMessageCopySource" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFMessageCopyGetFlagStatus" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
