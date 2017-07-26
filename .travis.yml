@@ -4,3 +4,22 @@ jdk:
   - oraclejdk8
   - openjdk7
 sudo: false
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "oaVIeAv0uKfzWbz62p0H/SoSIuTNAxo0uyU5Z85JgELOl+dV5ydnnWPww7ooabJt8yt8rYKYSLKGTkTFLexpPhHujrvZl4AUGDa5n6sYSaoE/gvB1CEPD0d5faPJhIAd18h8q+tgEQHsR6gbNWna3weZ1h7vna2/ZqQV3BvFO3JEYxOHrNmJZyuPUQnNJ/sAVdiIoyj/gYY4S83u3if02Qo3ZBoDMT94Onb4GWkPVSDU8ZEFpJgpQc/2qQC2tjltDgKbr7DEFateyY0PKyvGzJ2lxLUTJgzY2ShYOg90MoTQGXkG4u1KWJARfZ4AIo3uby6oFn5qquo6PBxEwq/ExZs2pjE0jk/jWNOIsHxtF5luSswnTJHwzGzWgzSb/IKjcuJ1fPAXVqbN8KVikevJMBgXr4l2uWbRVilUhpWLhErsnoO8riEfv+uUAimjjdWdTAUsEcI1zGf+/8fn8PARS9b299glvV7pAZxElBcn8+cea04RchePJ+VQB92Vlb6H4YNRyz7B9MxxyA/82Z6RFppIVUtNXKmfe9qH4055QBEdqvXHO2v6nMZAAgjHcVxIm8OlKwUYgeZ5GAd1klx29kSlsvSWdYMlSP7kAK4OWt8NYFW5ps98zyat8o0G5dRsUtKGyiBxXMoWZJi2JSnXVLOPwSapOcaTksSKu8EFf3A="
+
+before_install:
+      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "teverett/OLMReader"
+      description: "Build submitted via Travis CI"
+    notification_email: tom@khubla.com
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile"
+    branch_pattern: coverity_scan
+    
