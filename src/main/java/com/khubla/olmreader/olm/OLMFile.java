@@ -94,7 +94,9 @@ public class OLMFile {
          } catch (final Exception ex) {
             ex.printStackTrace();
          }
-         olmMessageCallback.categories(categories);
+         if (null != categories) {
+            olmMessageCallback.categories(categories);
+         }
       }
    }
 
