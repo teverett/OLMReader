@@ -1,17 +1,12 @@
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/teverett/OLMReader)
+[![Coverity Scan](https://img.shields.io/coverity/scan/3997.svg)](https://scan.coverity.com/projects/teverett-olmreader)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c1ef374e6fb42408e915a849c498798)](https://www.codacy.com/app/teverett/OLMReader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teverett/OLMReader&amp;utm_campaign=Badge_Grade)
+
 # OLMReader
 
 A Java library for reading MS Outlook for Mac [OLM](https://support.office.com/en-us/article/Export-or-manually-archive-Outlook-items-281a62bf-cc42-46b1-9ad5-6bda80ca3106) archives
 
 Schema for OLM XML can be found [here](https://github.com/teverett/OLMReader/blob/master/src/main/resources/olm.xsd)
-
-Travis Status
----------
-
-<a href="https://travis-ci.org/teverett/OLMReader"><img src="https://api.travis-ci.org/teverett/OLMReader.png"></a>
-
-Coverity Status
-
-<a href="https://scan.coverity.com/projects/teverett-olmreader"> <img alt="Coverity Scan Build Status" src="https://scan.coverity.com/projects/13283/badge.svg"/></a>
 
 Maven Coordinates
 -------------------
