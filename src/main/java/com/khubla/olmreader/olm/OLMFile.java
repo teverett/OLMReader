@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Emails;
 import com.khubla.olmreader.olm.generated.Emails.Email;
+import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.util.GenericJAXBMarshaller;
 
 public class OLMFile {
@@ -33,6 +34,7 @@ public class OLMFile {
    private static final String OLM_SCHEMA = "/olm.xsd";
    private static final String XML_SCHEMA = "/xml.xsd";
    private static final String CATEGORIES_SCHEMA = "/categories.xsd";
+   private static final String CONTACT_SCHEMA = "/contacts.xsd";
    /**
     * date format
     */
@@ -45,6 +47,10 @@ public class OLMFile {
     * categories.xml
     */
    private final String CATEGORIES_XML = "Categories.xml";
+   private final String CONTACTS_XML = "Local/Address Book/Contacts.xml";
+   private final String CALENDAR_XML = "Local/Calendar/Calendar.xml";
+   private final String TASKS_XML = "Local/Tasks/Tasks.xml";
+   private final String NOTES_XML = "Local/Notes/Notes.xml";
 
    /**
     * ctor
@@ -130,6 +136,30 @@ public class OLMFile {
       }
    }
 
+   private void readContact(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
+      /*
+       * contact callback
+       */
+      if (null != olmMessageCallback) {
+         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
+         final InputStream categoriesSchemaInputStream = OLMFile.class.getResourceAsStream(CONTACT_SCHEMA);
+         final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
+         final Source[] sources = new StreamSource[2];
+         /*
+          * order is important here. JaxB needs to see xml.xsd before olm.xsd
+          */
+         sources[0] = new StreamSource(xmlSchemaInputStream);
+         sources[1] = new StreamSource(categoriesSchemaInputStream);
+         final GenericJAXBMarshaller<Contacts> marshaller = new GenericJAXBMarshaller<Contacts>(Contacts.class, sources);
+         Contacts contacts = null;
+         try {
+            contacts = marshaller.unmarshall(zipInputStream);
+         } catch (final Exception ex) {
+            ex.printStackTrace();
+         }
+      }
+   }
+
    /**
     * read OLM file
     */
@@ -149,10 +179,18 @@ public class OLMFile {
                      IOUtils.copy(inputStream, baos);
                      olmRawMessageCallback.rawMessage(baos.toString());
                   }
-                  if (zipEntry.getName().compareTo(CATEGORIES_XML) != 0) {
-                     readEmail(zipEntry, olmMessageCallback);
-                  } else {
+                  if (zipEntry.getName().equals(CATEGORIES_XML)) {
                      readCategories(zipEntry, olmMessageCallback);
+                  } else if (zipEntry.getName().equals(CONTACTS_XML)) {
+                     readContact(zipEntry, olmMessageCallback);
+                  } else if (zipEntry.getName().equals(CALENDAR_XML)) {
+                     //todo
+                  } else if (zipEntry.getName().equals(TASKS_XML)) {
+                     //todo
+                  } else if (zipEntry.getName().equals(NOTES_XML)) {
+                     //todo
+                  } else {
+                     readEmail(zipEntry, olmMessageCallback);
                   }
                }
             }
