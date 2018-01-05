@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="contacts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contact">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="OPFContactCanDelete">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCanEdit">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyAge">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBirthday">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:dateTime">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessCity">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessCompany">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessCountry">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessDepartment">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessOffice">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessState">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessStreetAddress">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessTitle">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyBusinessZip">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:int">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyContactImage">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyDefaultEmailAddress">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="contactEmailAddress">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute ref="xml:space"/>
+                                                        <xs:attribute type="xs:string" name="OPFContactEmailAddressAddress"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressIsDefault"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressType"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="xml:space"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyDisplayName">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyEmailAddressList">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="contactEmailAddress" maxOccurs="unbounded" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute ref="xml:space"/>
+                                                        <xs:attribute type="xs:string" name="OPFContactEmailAddressAddress" use="optional"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressIsDefault" use="optional"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressType" use="optional"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="xml:space"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyEmailAddressList1">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="contactEmailAddress">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute ref="xml:space"/>
+                                                        <xs:attribute type="xs:string" name="OPFContactEmailAddressAddress"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressIsDefault"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressType"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="xml:space"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyEmailAddressList2">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="contactEmailAddress">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="xs:string">
+                                                        <xs:attribute ref="xml:space"/>
+                                                        <xs:attribute type="xs:string" name="OPFContactEmailAddressAddress"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressIsDefault"/>
+                                                        <xs:attribute type="xs:byte" name="OPFContactEmailAddressType"/>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute ref="xml:space"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyFirstName">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyLastName">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyModDate">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:dateTime">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyNotes">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactCopyNotesPlain">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactGetFlagStatus">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactIsJapaneseContact">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="OPFContactType">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:byte">
+                                            <xs:attribute ref="xml:space"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute ref="xml:space"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute ref="xml:space"/>
+            <xs:attribute type="xs:byte" name="elementCount"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
