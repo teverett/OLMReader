@@ -3,6 +3,7 @@ package com.khubla.olmreader;
 import java.io.IOException;
 import java.util.List;
 
+import com.khubla.olmreader.olm.generated.Contacts;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -74,6 +75,12 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
       } catch (final Exception e) {
          e.printStackTrace();
       }
+   }
+
+   @Override
+   public void contact(Contacts.Contact contact) {
+      //todo contact handler
+      System.out.println(contact.getOPFContactCopyDisplayName().getValue());
    }
 
    @Override
