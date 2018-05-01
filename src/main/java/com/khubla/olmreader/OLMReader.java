@@ -3,7 +3,6 @@ package com.khubla.olmreader;
 import java.io.IOException;
 import java.util.List;
 
-import com.khubla.olmreader.olm.generated.Contacts;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -15,6 +14,7 @@ import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
 import com.khubla.olmreader.olm.generated.Categories;
+import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.olm.generated.Emails;
 
 public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
@@ -62,6 +62,12 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
    }
 
    @Override
+   public void contact(Contacts.Contact contact) {
+      // todo contact handler
+      System.out.println(contact.getOPFContactCopyDisplayName().getValue());
+   }
+
+   @Override
    public void message(Emails.Email email) {
       try {
          if (null != email.getOPFMessageCopyAttachmentList()) {
@@ -75,12 +81,6 @@ public class OLMReader implements OLMMessageCallback, OLMRawMessageCallback {
       } catch (final Exception e) {
          e.printStackTrace();
       }
-   }
-
-   @Override
-   public void contact(Contacts.Contact contact) {
-      //todo contact handler
-      System.out.println(contact.getOPFContactCopyDisplayName().getValue());
    }
 
    @Override

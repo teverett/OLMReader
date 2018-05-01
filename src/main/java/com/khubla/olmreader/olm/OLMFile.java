@@ -18,9 +18,9 @@ import org.apache.commons.compress.utils.IOUtils;
 import org.xml.sax.SAXException;
 
 import com.khubla.olmreader.olm.generated.Categories;
+import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.olm.generated.Emails;
 import com.khubla.olmreader.olm.generated.Emails.Email;
-import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.util.GenericJAXBMarshaller;
 
 public class OLMFile {
@@ -106,6 +106,29 @@ public class OLMFile {
       }
    }
 
+   private void readContact(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
+      /*
+       * contact callback
+       */
+      if (null != olmMessageCallback) {
+         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
+         final InputStream categoriesSchemaInputStream = OLMFile.class.getResourceAsStream(CONTACT_SCHEMA);
+         final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
+         final Source[] sources = new StreamSource[2];
+         /*
+          * order is important here. JaxB needs to see xml.xsd before olm.xsd
+          */
+         sources[0] = new StreamSource(xmlSchemaInputStream);
+         sources[1] = new StreamSource(categoriesSchemaInputStream);
+         final GenericJAXBMarshaller<Contacts> marshaller = new GenericJAXBMarshaller<Contacts>(Contacts.class, sources);
+         try {
+            marshaller.unmarshall(zipInputStream);
+         } catch (final Exception ex) {
+            ex.printStackTrace();
+         }
+      }
+   }
+
    private void readEmail(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
       /*
        * message callback
@@ -136,30 +159,6 @@ public class OLMFile {
       }
    }
 
-   private void readContact(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
-      /*
-       * contact callback
-       */
-      if (null != olmMessageCallback) {
-         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
-         final InputStream categoriesSchemaInputStream = OLMFile.class.getResourceAsStream(CONTACT_SCHEMA);
-         final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
-         final Source[] sources = new StreamSource[2];
-         /*
-          * order is important here. JaxB needs to see xml.xsd before olm.xsd
-          */
-         sources[0] = new StreamSource(xmlSchemaInputStream);
-         sources[1] = new StreamSource(categoriesSchemaInputStream);
-         final GenericJAXBMarshaller<Contacts> marshaller = new GenericJAXBMarshaller<Contacts>(Contacts.class, sources);
-         Contacts contacts = null;
-         try {
-            contacts = marshaller.unmarshall(zipInputStream);
-         } catch (final Exception ex) {
-            ex.printStackTrace();
-         }
-      }
-   }
-
    /**
     * read OLM file
     */
@@ -184,11 +183,11 @@ public class OLMFile {
                   } else if (zipEntry.getName().equals(CONTACTS_XML)) {
                      readContact(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(CALENDAR_XML)) {
-                     //todo
+                     // todo
                   } else if (zipEntry.getName().equals(TASKS_XML)) {
-                     //todo
+                     // todo
                   } else if (zipEntry.getName().equals(NOTES_XML)) {
-                     //todo
+                     // todo
                   } else {
                      readEmail(zipEntry, olmMessageCallback);
                   }
