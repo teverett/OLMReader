@@ -1,21 +1,16 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	xmlns:xml="http://www.w3.org/XML/1998/namespace"
-	elementFormDefault="unqualified">
-	<xs:import schemaLocation="xml.xsd"
-		namespace="http://www.w3.org/XML/1998/namespace" />
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="unqualified">
+	<xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace" />
 	<xs:element name="emails">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="email" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
-							<xs:element name="OPFMessageCopyPrimaryCategory"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyPrimaryCategory" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="OPFCategoryCopyBackgroundColor"
-											minOccurs="0">
+										<xs:element name="OPFCategoryCopyBackgroundColor" minOccurs="0">
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
@@ -24,8 +19,7 @@
 												</xs:simpleContent>
 											</xs:complexType>
 										</xs:element>
-										<xs:element name="OPFCategoryCopyName"
-											minOccurs="0">
+										<xs:element name="OPFCategoryCopyName" minOccurs="0">
 											<xs:complexType>
 												<xs:simpleContent>
 													<xs:extension base="xs:string">
@@ -38,16 +32,13 @@
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyCategoryList"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyCategoryList" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="category" maxOccurs="unbounded">
 											<xs:complexType>
-												<xs:attribute
-													name="OPFCategoryCopyBackgroundColor" type="xs:string" />
-												<xs:attribute name="OPFCategoryCopyName"
-													type="xs:string" />
+												<xs:attribute name="OPFCategoryCopyBackgroundColor" type="xs:string" />
+												<xs:attribute name="OPFCategoryCopyName" type="xs:string" />
 												<xs:attribute ref="xml:space" use="optional" />
 											</xs:complexType>
 										</xs:element>
@@ -55,8 +46,7 @@
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyMeetingData"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyMeetingData" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -65,8 +55,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyReferences"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyReferences" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -75,8 +64,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyInReplyTo"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyInReplyTo" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -85,48 +73,39 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyBCCAddresses"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyBCCAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element ref="emailAddress"
-											maxOccurs="unbounded" />
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyReplyToAddresses"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyReplyToAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element ref="emailAddress"
-											maxOccurs="unbounded" />
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopySenderAddress"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopySenderAddress" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element ref="emailAddress"
-											maxOccurs="unbounded" />
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyToAddresses"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyToAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element ref="emailAddress"
-											maxOccurs="unbounded" />
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyThreadTopic"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyThreadTopic" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -135,8 +114,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyCompletedDateTime"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyCompletedDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -145,8 +123,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyDueDateTime"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyDueDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -155,8 +132,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyStartDateTime"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyStartDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -174,8 +150,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopySentTime"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopySentTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -184,8 +159,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyReminderDateTime"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyThreadIndex" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -194,8 +168,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element
-								name="OPFMessageCopyReceivedRepresentingName" minOccurs="0">
+							<xs:element name="OPFMessageCopyReminderDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -204,8 +177,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyReceivedTime"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyReceivedRepresentingName" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -214,8 +186,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetCalendarAcceptStatus"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyReceivedTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -224,11 +195,46 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetHasRichText"
-								minOccurs="0">
+							<xs:element name="OPFMessageGetCalendarAcceptStatus" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetSendReadReceipt" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetMentionedMe" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetInferenceClassification" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFMessageGetHasRichText" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -237,14 +243,13 @@
 							<xs:element name="OPFMessageGetIsRead" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
+										<xs:extension base="xs:string">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageGetOverrideEncoding"
-								minOccurs="0">
+							<xs:element name="OPFMessageGetOverrideEncoding" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -280,8 +285,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyGetFlagStatus"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyGetFlagStatus" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -293,14 +297,13 @@
 							<xs:element name="OPFMessageGetWasSent" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
+										<xs:extension base="xs:string">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageIsCalendarMessage"
-								minOccurs="0">
+							<xs:element name="OPFMessageIsCalendarMessage" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:boolean">
@@ -321,24 +324,22 @@
 							<xs:element name="OPFMessageIsOutgoing" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
+										<xs:extension base="xs:string">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageIsOutgoingMeetingResponse"
-								minOccurs="0">
+							<xs:element name="OPFMessageIsOutgoingMeetingResponse" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
+										<xs:extension base="xs:string">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyMessageID"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyMessageID" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -351,7 +352,7 @@
 							<xs:element name="OPFMessageGetHasHTML" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:boolean">
+										<xs:extension base="xs:string">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -366,8 +367,7 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyHTMLBody"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyHTMLBody" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
 										<xs:extension base="xs:string">
@@ -376,45 +376,33 @@
 									</xs:simpleContent>
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyFromAddresses"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyFromAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element ref="emailAddress"
-											maxOccurs="unbounded" />
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyCCAddresses"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyCCAddresses" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element ref="emailAddress"
-											maxOccurs="unbounded" />
+										<xs:element ref="emailAddress" maxOccurs="unbounded" />
 									</xs:sequence>
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="OPFMessageCopyAttachmentList"
-								minOccurs="0">
+							<xs:element name="OPFMessageCopyAttachmentList" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element name="messageAttachment"
-											maxOccurs="unbounded">
+										<xs:element name="messageAttachment" maxOccurs="unbounded">
 											<xs:complexType>
-												<xs:attribute
-													name="OPFAttachmentContentExtension" type="xs:string" />
-												<xs:attribute
-													name="OPFAttachmentContentFileSize" type="xs:string" />
-												<xs:attribute name="OPFAttachmentContentID"
-													type="xs:string" />
-												<xs:attribute name="OPFAttachmentContentType"
-													type="xs:string" />
-												<xs:attribute name="OPFAttachmentName"
-													type="xs:string" />
-												<xs:attribute name="OPFAttachmentURL"
-													type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentExtension" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentFileSize" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentID" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentType" type="xs:string" />
+												<xs:attribute name="OPFAttachmentName" type="xs:string" />
+												<xs:attribute name="OPFAttachmentURL" type="xs:string" />
 												<xs:attribute ref="xml:space" use="optional" />
 											</xs:complexType>
 										</xs:element>
@@ -434,12 +422,9 @@
 	<xs:element name="emailAddress">
 		<xs:complexType>
 			<xs:attribute ref="xml:space" use="optional" />
-			<xs:attribute name="OPFContactEmailAddressAddress"
-				type="xs:string" />
-			<xs:attribute name="OPFContactEmailAddressName"
-				type="xs:string" />
-			<xs:attribute name="OPFContactEmailAddressType"
-				type="xs:integer" />
+			<xs:attribute name="OPFContactEmailAddressAddress" type="xs:string" />
+			<xs:attribute name="OPFContactEmailAddressName" type="xs:string" />
+			<xs:attribute name="OPFContactEmailAddressType" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

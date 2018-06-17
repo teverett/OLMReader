@@ -15,6 +15,8 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.compress.utils.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import com.khubla.olmreader.olm.generated.Categories;
@@ -24,6 +26,10 @@ import com.khubla.olmreader.olm.generated.Emails.Email;
 import com.khubla.olmreader.util.GenericJAXBMarshaller;
 
 public class OLMFile {
+   /**
+    * logger
+    */
+   private static final Logger logger = LoggerFactory.getLogger(OLMFile.class);
    /**
     * XML extension
     */
@@ -168,6 +174,7 @@ public class OLMFile {
             final ZipArchiveEntry zipEntry = e.nextElement();
             System.out.println(zipEntry.getName());
             if (zipEntry.isDirectory() == false) {
+               logger.info("zip entry: " + zipEntry.getName());
                if (zipEntry.getName().trim().toLowerCase().endsWith(XML)) {
                   /*
                    * raw callback
