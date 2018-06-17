@@ -103,8 +103,9 @@ public class OLMFile {
          Categories categories = null;
          try {
             categories = marshaller.unmarshall(zipInputStream);
-         } catch (final Exception ex) {
-            ex.printStackTrace();
+         } catch (final Exception e) {
+            logger.error("Error in readCategories", e);
+            e.printStackTrace();
          }
          if (null != categories) {
             olmMessageCallback.categories(categories);
@@ -129,8 +130,9 @@ public class OLMFile {
          final GenericJAXBMarshaller<Contacts> marshaller = new GenericJAXBMarshaller<Contacts>(Contacts.class, sources);
          try {
             marshaller.unmarshall(zipInputStream);
-         } catch (final Exception ex) {
-            ex.printStackTrace();
+         } catch (final Exception e) {
+            logger.error("Error in readContact", e);
+            e.printStackTrace();
          }
       }
    }
@@ -172,9 +174,8 @@ public class OLMFile {
       try {
          for (final Enumeration<ZipArchiveEntry> e = zipfile.getEntries(); e.hasMoreElements();) {
             final ZipArchiveEntry zipEntry = e.nextElement();
-            System.out.println(zipEntry.getName());
             if (zipEntry.isDirectory() == false) {
-               logger.info("zip entry: " + zipEntry.getName());
+               logger.info(zipEntry.getName());
                if (zipEntry.getName().trim().toLowerCase().endsWith(XML)) {
                   /*
                    * raw callback
@@ -185,16 +186,19 @@ public class OLMFile {
                      IOUtils.copy(inputStream, baos);
                      olmRawMessageCallback.rawMessage(baos.toString());
                   }
+                  /*
+                   * switch on the file type
+                   */
                   if (zipEntry.getName().equals(CATEGORIES_XML)) {
                      readCategories(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(CONTACTS_XML)) {
                      readContact(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(CALENDAR_XML)) {
-                     // todo
+                     logger.warn("Calendar not implemented");
                   } else if (zipEntry.getName().equals(TASKS_XML)) {
-                     // todo
+                     logger.warn("Tasks not implemented");
                   } else if (zipEntry.getName().equals(NOTES_XML)) {
-                     // todo
+                     logger.warn("Notes not implemented");
                   } else {
                      readEmail(zipEntry, olmMessageCallback);
                   }
@@ -203,6 +207,7 @@ public class OLMFile {
          }
          zipfile.close();
       } catch (final Exception e) {
+         logger.error("Error in readOLMFile", e);
          e.printStackTrace();
       }
    }

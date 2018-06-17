@@ -13,14 +13,15 @@ import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
 import com.khubla.olmreader.olm.generated.Categories;
+import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails.Email;
 
-public class Test1 implements OLMMessageCallback, OLMRawMessageCallback {
+public class TestOutlook16 implements OLMMessageCallback, OLMRawMessageCallback {
    @Test
    public void test1() {
       try {
-         OLMFile olmFile = new OLMFile("src/test/resources/bill_rapp.olm");
+         OLMFile olmFile = new OLMFile("src/test/resources/Outlook16/bill_rapp.olm");
          olmFile.readOLMFile(this, this);
       } catch (Exception e) {
          e.printStackTrace();
@@ -35,16 +36,18 @@ public class Test1 implements OLMMessageCallback, OLMRawMessageCallback {
 
    @Override
    public void categories(Categories categories) {
-      // TODO Auto-generated method stub
+      for (Category category : categories.getCategory()) {
+         System.out.println("Category: " + category.getOPFCategoryCopyName());
+      }
    }
 
    @Override
    public void contact(Contact contact) {
-      // TODO Auto-generated method stub
+      System.out.println("Contact: " + contact.getOPFContactCopyDisplayName());
    }
 
    @Override
    public void message(Email email) {
-      // TODO Auto-generated method stub
+      System.out.println("Message: " + email.getOPFMessageCopyMessageID().getValue());
    }
 }
