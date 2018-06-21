@@ -117,7 +117,7 @@
 							<xs:element name="OPFMessageCopyCompletedDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -126,7 +126,7 @@
 							<xs:element name="OPFMessageCopyDueDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -135,7 +135,7 @@
 							<xs:element name="OPFMessageCopyStartDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -153,7 +153,7 @@
 							<xs:element name="OPFMessageCopySentTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -171,7 +171,7 @@
 							<xs:element name="OPFMessageCopyReminderDateTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -189,7 +189,7 @@
 							<xs:element name="OPFMessageCopyReceivedTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" use="optional" />
 										</xs:extension>
 									</xs:simpleContent>

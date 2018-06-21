@@ -10,7 +10,7 @@
 							<xs:element name="OPFNoteCopyCreationDate">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -19,7 +19,7 @@
 							<xs:element name="OPFNoteCopyModDate">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" />
 										</xs:extension>
 									</xs:simpleContent>
