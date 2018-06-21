@@ -23,6 +23,8 @@ import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails;
 import com.khubla.olmreader.olm.generated.Emails.Email;
+import com.khubla.olmreader.olm.generated.Groups;
+import com.khubla.olmreader.olm.generated.Groups.Group;
 import com.khubla.olmreader.olm.generated.Notes;
 import com.khubla.olmreader.olm.generated.Notes.Note;
 import com.khubla.olmreader.olm.generated.Tasks;
@@ -48,6 +50,7 @@ public class OLMFile {
    private static final String TASKS_SCHEMA = "/schema/tasks.xsd";
    private static final String NOTES_SCHEMA = "/schema/notes.xsd";
    private static final String APPOINTMENTS_SCHEMA = "/schema/appointments.xsd";
+   private static final String GROUPS_SCHEMA = "/schema/groups.xsd";
    /**
     * date format
     */
@@ -64,6 +67,7 @@ public class OLMFile {
    private final String CALENDAR_XML = "Local/Calendar/Calendar.xml";
    private final String TASKS_XML = "Local/Tasks/Tasks.xml";
    private final String NOTES_XML = "Local/Notes/Notes.xml";
+   private final String GROUPS_XML = "Local/Address Book/Groups.xml";
 
    /**
     * ctor
@@ -181,6 +185,29 @@ public class OLMFile {
       }
    }
 
+   private void readGroups(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
+      /*
+       * callback
+       */
+      if (null != olmMessageCallback) {
+         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
+         final GenericJAXBMarshaller<Groups> marshaller = new GenericJAXBMarshaller<Groups>(Groups.class, new String[] { XML_SCHEMA, GROUPS_SCHEMA });
+         Groups groups = null;
+         try {
+            groups = marshaller.unmarshall(zipInputStream);
+         } catch (final Exception e) {
+            logger.error("Error in readGroups", e);
+            e.printStackTrace();
+         }
+         if ((null != groups) && (null != groups.getGroup())) {
+            for (int i = 0; i < groups.getGroup().size(); i++) {
+               final Group group = groups.getGroup().get(i);
+               olmMessageCallback.group(group);
+            }
+         }
+      }
+   }
+
    private void readNotes(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
       /*
        * callback
@@ -236,6 +263,8 @@ public class OLMFile {
                      readTasks(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(NOTES_XML)) {
                      readNotes(zipEntry, olmMessageCallback);
+                  } else if (zipEntry.getName().equals(GROUPS_XML)) {
+                     readGroups(zipEntry, olmMessageCallback);
                   } else {
                      readEmails(zipEntry, olmMessageCallback);
                   }

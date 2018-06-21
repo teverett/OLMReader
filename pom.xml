@@ -123,6 +123,10 @@
 							<xsd>${basedir}/src/main/resources/schema/appointments.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
+						<xsdOption>
+							<xsd>${basedir}/src/main/resources/schema/groups.xsd</xsd>
+							<packagename>com.khubla.olmreader.olm.generated</packagename>
+						</xsdOption>
 					</xsdOptions>
 				</configuration>
 			</plugin>

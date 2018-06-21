@@ -11,6 +11,7 @@ import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.olm.generated.Emails;
+import com.khubla.olmreader.olm.generated.Groups.Group;
 import com.khubla.olmreader.olm.generated.Notes.Note;
 import com.khubla.olmreader.olm.generated.Tasks.Task;
 
@@ -48,6 +49,11 @@ public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessage
       } catch (final Exception e) {
          e.printStackTrace();
       }
+   }
+
+   @Override
+   public void group(Group group) {
+      System.out.println("Group: " + group.getOPFGroupCopyDisplayName().getValue());
    }
 
    @Override

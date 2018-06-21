@@ -17,6 +17,7 @@ import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails.Email;
+import com.khubla.olmreader.olm.generated.Groups.Group;
 import com.khubla.olmreader.olm.generated.Notes.Note;
 import com.khubla.olmreader.olm.generated.Tasks.Task;
 
@@ -41,6 +42,11 @@ public class TestOutlook16_bill_rapp implements OLMMessageCallback, OLMRawMessag
    @Override
    public void email(Email email) {
       System.out.println("Email: " + email.getOPFMessageCopyMessageID().getValue());
+   }
+
+   @Override
+   public void group(Group group) {
+      System.out.println("Group: " + group.getOPFGroupCopyDisplayName().getValue());
    }
 
    @Override
