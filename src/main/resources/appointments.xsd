@@ -330,8 +330,8 @@
 										</xs:element>
 										<xs:element name="OPFRecurrencePattern" minOccurs="0">
 											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="OPFRecurrencePatternDaysOfWeek">
+												<xs:all>
+													<xs:element name="OPFRecurrencePatternDaysOfWeek" minOccurs="0">
 														<xs:complexType>
 															<xs:all>
 																<xs:element name="allDays">
@@ -446,7 +446,25 @@
 															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
-												</xs:sequence>
+													<xs:element name="OPFRecurrencePatternDayOfMonth" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:space" />
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="OPFRecurrencePatternMonth" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:space" />
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
 												<xs:attribute ref="xml:space" />
 											</xs:complexType>
 										</xs:element>
