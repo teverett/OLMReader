@@ -21,7 +21,6 @@
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							
 							<xs:element name="OPFContactCopyPrimaryCategory" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
@@ -47,7 +46,6 @@
 									<xs:attribute ref="xml:space" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							
 							<xs:element name="OPFContactCanDelete">
 								<xs:complexType>
 									<xs:simpleContent>
