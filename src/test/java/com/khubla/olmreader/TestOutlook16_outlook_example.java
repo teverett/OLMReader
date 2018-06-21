@@ -18,25 +18,9 @@ import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails.Email;
 
 public class TestOutlook16_outlook_example implements OLMMessageCallback, OLMRawMessageCallback {
-   @Test
-   public void test_outlook_example() {
-      try {
-         OLMFile olmFile = new OLMFile("src/test/resources/Outlook16/outlook_example.olm");
-         olmFile.readOLMFile(this, this);
-      } catch (Exception e) {
-         e.printStackTrace();
-         Assert.fail();
-      }
-   }
-
-   @Override
-   public void rawMessage(String olmMessage) {
-      // System.out.println(olmMessage);
-   }
-
    @Override
    public void categories(Categories categories) {
-      for (Category category : categories.getCategory()) {
+      for (final Category category : categories.getCategory()) {
          System.out.println("Category: " + category.getOPFCategoryCopyName());
       }
    }
@@ -49,5 +33,21 @@ public class TestOutlook16_outlook_example implements OLMMessageCallback, OLMRaw
    @Override
    public void message(Email email) {
       System.out.println("Message: " + email.getOPFMessageCopyMessageID().getValue());
+   }
+
+   @Override
+   public void rawMessage(String olmMessage) {
+      // System.out.println(olmMessage);
+   }
+
+   @Test
+   public void test_outlook_example() {
+      try {
+         final OLMFile olmFile = new OLMFile("src/test/resources/Outlook16/outlook_example.olm");
+         olmFile.readOLMFile(this, this);
+      } catch (final Exception e) {
+         e.printStackTrace();
+         Assert.fail();
+      }
    }
 }
