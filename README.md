@@ -14,7 +14,7 @@ Maven Coordinates
 ```
 <groupId>com.khubla.olmreader</groupId>
 <artifactId>olmreader</artifactId>
-<version>1.1</version>
+<version>1.2</version>
 <packaging>jar</packaging>
 ```
 
