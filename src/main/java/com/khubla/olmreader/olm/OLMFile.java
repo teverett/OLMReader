@@ -41,13 +41,13 @@ public class OLMFile {
    /**
     * schemas
     */
-   private static final String EMAILS_SCHEMA = "/emails.xsd";
-   private static final String XML_SCHEMA = "/xml.xsd";
-   private static final String CATEGORIES_SCHEMA = "/categories.xsd";
-   private static final String CONTACTS_SCHEMA = "/contacts.xsd";
-   private static final String TASKS_SCHEMA = "/tasks.xsd";
-   private static final String NOTES_SCHEMA = "/notes.xsd";
-   private static final String APPOINTMENTS_SCHEMA = "/appointments.xsd";
+   private static final String EMAILS_SCHEMA = "/schema/emails.xsd";
+   private static final String XML_SCHEMA = "/schema/xml.xsd";
+   private static final String CATEGORIES_SCHEMA = "/schema/categories.xsd";
+   private static final String CONTACTS_SCHEMA = "/schema/contacts.xsd";
+   private static final String TASKS_SCHEMA = "/schema/tasks.xsd";
+   private static final String NOTES_SCHEMA = "/schema/notes.xsd";
+   private static final String APPOINTMENTS_SCHEMA = "/schema/appointments.xsd";
    /**
     * date format
     */

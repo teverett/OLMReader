@@ -100,27 +100,27 @@
 					<!-- <sourceRoot>${basedir}/src/main/java</sourceRoot> -->
 					<xsdOptions>
 						<xsdOption>
-							<xsd>${basedir}/src/main/resources/emails.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/schema/emails.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 						<xsdOption>
-							<xsd>${basedir}/src/main/resources/categories.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/schema/categories.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 						<xsdOption>
-							<xsd>${basedir}/src/main/resources/contacts.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/schema/contacts.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 						<xsdOption>
-							<xsd>${basedir}/src/main/resources/tasks.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/schema/tasks.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 						<xsdOption>
-							<xsd>${basedir}/src/main/resources/notes.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/schema/notes.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 						<xsdOption>
-							<xsd>${basedir}/src/main/resources/appointments.xsd</xsd>
+							<xsd>${basedir}/src/main/resources/schema/appointments.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
 					</xsdOptions>
