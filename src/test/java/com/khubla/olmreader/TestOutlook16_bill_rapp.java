@@ -17,9 +17,9 @@ import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails.Email;
 
-public class TestOutlook16 implements OLMMessageCallback, OLMRawMessageCallback {
-   @Test
-   public void test1() {
+public class TestOutlook16_bill_rapp implements OLMMessageCallback, OLMRawMessageCallback {
+   @Test(enabled = true)
+   public void test_bill_rapp() {
       try {
          OLMFile olmFile = new OLMFile("src/test/resources/Outlook16/bill_rapp.olm");
          olmFile.readOLMFile(this, this);
@@ -31,7 +31,7 @@ public class TestOutlook16 implements OLMMessageCallback, OLMRawMessageCallback 
 
    @Override
    public void rawMessage(String olmMessage) {
-      // TODO Auto-generated method stub
+      // System.out.println(olmMessage);
    }
 
    @Override
@@ -43,7 +43,7 @@ public class TestOutlook16 implements OLMMessageCallback, OLMRawMessageCallback 
 
    @Override
    public void contact(Contact contact) {
-      System.out.println("Contact: " + contact.getOPFContactCopyDisplayName());
+      System.out.println("Contact: " + contact.getOPFContactCopyDisplayName().getValue());
    }
 
    @Override

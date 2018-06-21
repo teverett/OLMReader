@@ -128,11 +128,15 @@ public class OLMFile {
          sources[0] = new StreamSource(xmlSchemaInputStream);
          sources[1] = new StreamSource(categoriesSchemaInputStream);
          final GenericJAXBMarshaller<Contacts> marshaller = new GenericJAXBMarshaller<Contacts>(Contacts.class, sources);
+         Contacts contacts = null;
          try {
-            marshaller.unmarshall(zipInputStream);
+            contacts = marshaller.unmarshall(zipInputStream);
          } catch (final Exception e) {
             logger.error("Error in readContact", e);
             e.printStackTrace();
+         }
+         if ((null != contacts) && (null != contacts.getContact())) {
+            olmMessageCallback.contact(contacts.getContact());
          }
       }
    }
