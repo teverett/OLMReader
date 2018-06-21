@@ -6,14 +6,21 @@ import java.util.List;
 import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
+import com.khubla.olmreader.olm.generated.Appointments.Appointment;
 import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.olm.generated.Emails;
+import com.khubla.olmreader.olm.generated.Notes.Note;
 import com.khubla.olmreader.olm.generated.Tasks.Task;
 
 public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessageCallback {
    private OLMFile olmFile;
+
+   @Override
+   public void appointment(Appointment appointment) {
+      System.out.println("Appointment: " + appointment.getOPFCalendarEventCopyUUID().getValue());
+   }
 
    @Override
    public void categories(Categories categories) {
@@ -28,7 +35,7 @@ public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessage
    }
 
    @Override
-   public void message(Emails.Email email) {
+   public void email(Emails.Email email) {
       try {
          if (null != email.getOPFMessageCopyAttachmentList()) {
             final List<Emails.Email.OPFMessageCopyAttachmentList.MessageAttachment> attachments = email.getOPFMessageCopyAttachmentList().getMessageAttachment();
@@ -41,6 +48,11 @@ public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessage
       } catch (final Exception e) {
          e.printStackTrace();
       }
+   }
+
+   @Override
+   public void note(Note note) {
+      System.out.println("Note: " + note.getOPFNoteCopyTitle().getValue());
    }
 
    @Override

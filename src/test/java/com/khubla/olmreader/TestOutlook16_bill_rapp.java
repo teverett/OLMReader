@@ -12,13 +12,20 @@ import org.testng.annotations.Test;
 import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
+import com.khubla.olmreader.olm.generated.Appointments.Appointment;
 import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails.Email;
+import com.khubla.olmreader.olm.generated.Notes.Note;
 import com.khubla.olmreader.olm.generated.Tasks.Task;
 
 public class TestOutlook16_bill_rapp implements OLMMessageCallback, OLMRawMessageCallback {
+   @Override
+   public void appointment(Appointment appointment) {
+      System.out.println("Appointment: " + appointment.getOPFCalendarEventCopyUUID().getValue());
+   }
+
    @Override
    public void categories(Categories categories) {
       for (final Category category : categories.getCategory()) {
@@ -32,13 +39,23 @@ public class TestOutlook16_bill_rapp implements OLMMessageCallback, OLMRawMessag
    }
 
    @Override
-   public void message(Email email) {
-      System.out.println("Message: " + email.getOPFMessageCopyMessageID().getValue());
+   public void email(Email email) {
+      System.out.println("Email: " + email.getOPFMessageCopyMessageID().getValue());
+   }
+
+   @Override
+   public void note(Note note) {
+      System.out.println("Note: " + note.getOPFNoteCopyTitle().getValue());
    }
 
    @Override
    public void rawMessage(String olmMessage) {
       // System.out.println(olmMessage);
+   }
+
+   @Override
+   public void task(Task task) {
+      System.out.println("Task: " + task.getOPFTaskCopyName().getValue());
    }
 
    @Test(enabled = true)
@@ -50,10 +67,5 @@ public class TestOutlook16_bill_rapp implements OLMMessageCallback, OLMRawMessag
          e.printStackTrace();
          Assert.fail();
       }
-   }
-
-   @Override
-   public void task(Task task) {
-      System.out.println("Task: " + task.getOPFTaskCopyName().getValue());
    }
 }

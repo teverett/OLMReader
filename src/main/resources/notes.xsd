@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import schemaLocation="xml.xsd" namespace="http://www.w3.org/XML/1998/namespace" />
+	<xs:element name="notes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="note" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="OPFNoteCopyCreationDate">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFNoteCopyModDate">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFNoteCopyText" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFNoteCopyTitle" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute ref="xml:space" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute ref="xml:space" />
+			<xs:attribute type="xs:byte" name="elementCount" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
