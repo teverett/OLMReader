@@ -7,21 +7,24 @@ import com.khubla.olmreader.olm.OLMFile;
 import com.khubla.olmreader.olm.OLMMessageCallback;
 import com.khubla.olmreader.olm.OLMRawMessageCallback;
 import com.khubla.olmreader.olm.generated.Categories;
+import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts;
 import com.khubla.olmreader.olm.generated.Emails;
+import com.khubla.olmreader.olm.generated.Tasks.Task;
 
 public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessageCallback {
    private OLMFile olmFile;
 
    @Override
    public void categories(Categories categories) {
-      System.out.println(categories.getCategory().size());
+      for (final Category category : categories.getCategory()) {
+         System.out.println("Category: " + category.getOPFCategoryCopyName());
+      }
    }
 
    @Override
    public void contact(Contacts.Contact contact) {
-      // todo contact handler
-      System.out.println(contact.getOPFContactCopyDisplayName().getValue());
+      System.out.println("Contact: " + contact.getOPFContactCopyDisplayName().getValue());
    }
 
    @Override
@@ -48,5 +51,10 @@ public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessage
    public void read(String filename) throws IOException {
       olmFile = new OLMFile(filename);
       olmFile.readOLMFile(this, this);
+   }
+
+   @Override
+   public void task(Task task) {
+      System.out.println("Task: " + task.getOPFTaskCopyName().getValue());
    }
 }

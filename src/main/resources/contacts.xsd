@@ -4,7 +4,7 @@
 	<xs:element name="contacts">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="contact">
+				<xs:element name="contact" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
 							<xs:element name="OPFContactCanDelete">

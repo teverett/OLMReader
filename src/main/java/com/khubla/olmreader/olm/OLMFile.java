@@ -21,8 +21,11 @@ import org.xml.sax.SAXException;
 
 import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Contacts;
+import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails;
 import com.khubla.olmreader.olm.generated.Emails.Email;
+import com.khubla.olmreader.olm.generated.Tasks;
+import com.khubla.olmreader.olm.generated.Tasks.Task;
 import com.khubla.olmreader.util.GenericJAXBMarshaller;
 
 public class OLMFile {
@@ -41,6 +44,7 @@ public class OLMFile {
    private static final String XML_SCHEMA = "/xml.xsd";
    private static final String CATEGORIES_SCHEMA = "/categories.xsd";
    private static final String CONTACT_SCHEMA = "/contacts.xsd";
+   private static final String TASKS_SCHEMA = "/tasks.xsd";
    /**
     * date format
     */
@@ -113,20 +117,20 @@ public class OLMFile {
       }
    }
 
-   private void readContact(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
+   private void readContacts(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
       /*
        * contact callback
        */
       if (null != olmMessageCallback) {
          final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
-         final InputStream categoriesSchemaInputStream = OLMFile.class.getResourceAsStream(CONTACT_SCHEMA);
+         final InputStream contactchemaInputStream = OLMFile.class.getResourceAsStream(CONTACT_SCHEMA);
          final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
          final Source[] sources = new StreamSource[2];
          /*
           * order is important here. JaxB needs to see xml.xsd before olm.xsd
           */
          sources[0] = new StreamSource(xmlSchemaInputStream);
-         sources[1] = new StreamSource(categoriesSchemaInputStream);
+         sources[1] = new StreamSource(contactchemaInputStream);
          final GenericJAXBMarshaller<Contacts> marshaller = new GenericJAXBMarshaller<Contacts>(Contacts.class, sources);
          Contacts contacts = null;
          try {
@@ -136,7 +140,41 @@ public class OLMFile {
             e.printStackTrace();
          }
          if ((null != contacts) && (null != contacts.getContact())) {
-            olmMessageCallback.contact(contacts.getContact());
+            for (int i = 0; i < contacts.getContact().size(); i++) {
+               final Contact contact = contacts.getContact().get(i);
+               olmMessageCallback.contact(contact);
+            }
+         }
+      }
+   }
+
+   private void readTasks(ZipArchiveEntry zipEntry, OLMMessageCallback olmMessageCallback) throws ZipException, IOException, SAXException {
+      /*
+       * contact callback
+       */
+      if (null != olmMessageCallback) {
+         final InputStream zipInputStream = zipfile.getInputStream(zipEntry);
+         final InputStream tasksSchemaInputStream = OLMFile.class.getResourceAsStream(TASKS_SCHEMA);
+         final InputStream xmlSchemaInputStream = OLMFile.class.getResourceAsStream(XML_SCHEMA);
+         final Source[] sources = new StreamSource[2];
+         /*
+          * order is important here. JaxB needs to see xml.xsd before olm.xsd
+          */
+         sources[0] = new StreamSource(xmlSchemaInputStream);
+         sources[1] = new StreamSource(tasksSchemaInputStream);
+         final GenericJAXBMarshaller<Tasks> marshaller = new GenericJAXBMarshaller<Tasks>(Tasks.class, sources);
+         Tasks tasks = null;
+         try {
+            tasks = marshaller.unmarshall(zipInputStream);
+         } catch (final Exception e) {
+            logger.error("Error in readTasks", e);
+            e.printStackTrace();
+         }
+         if ((null != tasks) && (null != tasks.getTask())) {
+            for (int i = 0; i < tasks.getTask().size(); i++) {
+               final Task task = tasks.getTask().get(i);
+               olmMessageCallback.task(task);
+            }
          }
       }
    }
@@ -196,11 +234,11 @@ public class OLMFile {
                   if (zipEntry.getName().equals(CATEGORIES_XML)) {
                      readCategories(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(CONTACTS_XML)) {
-                     readContact(zipEntry, olmMessageCallback);
+                     readContacts(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(CALENDAR_XML)) {
                      logger.warn("Calendar not implemented");
                   } else if (zipEntry.getName().equals(TASKS_XML)) {
-                     logger.warn("Tasks not implemented");
+                     readTasks(zipEntry, olmMessageCallback);
                   } else if (zipEntry.getName().equals(NOTES_XML)) {
                      logger.warn("Notes not implemented");
                   } else {

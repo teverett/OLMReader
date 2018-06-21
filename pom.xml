@@ -114,6 +114,10 @@
 							<xsd>${basedir}/src/main/resources/contacts.xsd</xsd>
 							<packagename>com.khubla.olmreader.olm.generated</packagename>
 						</xsdOption>
+						<xsdOption>
+							<xsd>${basedir}/src/main/resources/tasks.xsd</xsd>
+							<packagename>com.khubla.olmreader.olm.generated</packagename>
+						</xsdOption>
 					</xsdOptions>
 				</configuration>
 			</plugin>

@@ -16,6 +16,7 @@ import com.khubla.olmreader.olm.generated.Categories;
 import com.khubla.olmreader.olm.generated.Categories.Category;
 import com.khubla.olmreader.olm.generated.Contacts.Contact;
 import com.khubla.olmreader.olm.generated.Emails.Email;
+import com.khubla.olmreader.olm.generated.Tasks.Task;
 
 public class TestOutlook16_outlook_example implements OLMMessageCallback, OLMRawMessageCallback {
    @Override
@@ -49,5 +50,10 @@ public class TestOutlook16_outlook_example implements OLMMessageCallback, OLMRaw
          e.printStackTrace();
          Assert.fail();
       }
+   }
+
+   @Override
+   public void task(Task task) {
+      System.out.println("Task: " + task.getOPFTaskCopyName().getValue());
    }
 }
