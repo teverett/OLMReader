@@ -7,6 +7,45 @@
 				<xs:element name="task" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
+							<xs:element name="OPFTaskCopyCategoryList" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="category" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="OPFCategoryCopyBackgroundColor" type="xs:string" />
+												<xs:attribute name="OPFCategoryCopyName" type="xs:string" />
+												<xs:attribute ref="xml:space" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute ref="xml:space" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFTaskCopyPrimaryCategory" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="OPFCategoryCopyBackgroundColor">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:space" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="OPFCategoryCopyName">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:space" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute ref="xml:space" use="optional" />
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFTaskCopyModDate">
 								<xs:complexType>
 									<xs:simpleContent>
