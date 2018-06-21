@@ -64,7 +64,7 @@
 							<xs:element name="OPFCalendarEventCopyModDate" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
+										<xs:extension base="xs:dateTime">
 											<xs:attribute ref="xml:space" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -238,7 +238,7 @@
 										<xs:element name="OPFRecurrenceCopyEndDate">
 											<xs:complexType>
 												<xs:simpleContent>
-													<xs:extension base="xs:string">
+													<xs:extension base="xs:dateTime">
 														<xs:attribute ref="xml:space" />
 													</xs:extension>
 												</xs:simpleContent>
@@ -247,7 +247,7 @@
 										<xs:element name="OPFRecurrenceCopyStartDate">
 											<xs:complexType>
 												<xs:simpleContent>
-													<xs:extension base="xs:string">
+													<xs:extension base="xs:dateTime">
 														<xs:attribute ref="xml:space" />
 													</xs:extension>
 												</xs:simpleContent>
