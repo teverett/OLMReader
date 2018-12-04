@@ -4,7 +4,7 @@
 	<artifactId>olmreader</artifactId>
 	<packaging>jar</packaging>
 	<name>khubla.com OLM Reader</name>
-	<version>1.4-SNAPSHOT</version>
+	<version>1.4</version>
 	<description>OLMReader is a library for reading MS Outlook for Mac OLM files</description>
 	<url>https://github.com/teverett/OLMReader</url>
 	<prerequisites>
@@ -26,7 +26,8 @@
 	</licenses>
 	<scm>
 		<connection>scm:git:https://github.com/teverett/OLMReader.git</connection>
-	</scm>
+	  <tag>olmreader-1.4</tag>
+  </scm>
 	<organization>
 		<name>khubla.com</name>
 		<url>http://www.khubla.com</url>
