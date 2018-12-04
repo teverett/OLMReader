@@ -1,6 +1,6 @@
 language: java 
 jdk:
-  - oraclejdk8s
+  - oraclejdk8
 sudo: required
 env:
   global:
