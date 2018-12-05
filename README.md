@@ -26,7 +26,7 @@ Schemas for OLM XML can be found [here](https://github.com/teverett/OLMReader/bl
 ```
 <groupId>com.khubla.olmreader</groupId>
 <artifactId>olmreader</artifactId>
-<version>1.2</version>
+<version>1.4</version>
 <packaging>jar</packaging>
 ```
 
