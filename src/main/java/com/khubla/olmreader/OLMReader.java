@@ -34,7 +34,6 @@ public class OLMReader {
          e.printStackTrace();
          final HelpFormatter formatter = new HelpFormatter();
          formatter.printHelp("posix", options);
-         System.exit(0);
       }
       /*
        * get the file
