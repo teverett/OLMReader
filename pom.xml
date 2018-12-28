@@ -4,12 +4,12 @@
 	<artifactId>olmreader</artifactId>
 	<packaging>jar</packaging>
 	<name>khubla.com OLM Reader</name>
-	<version>1.5-SNAPSHOT</version>
+	<version>1.5.0-SNAPSHOT</version>
 	<description>OLMReader is a library for reading MS Outlook for Mac OLM files</description>
 	<url>https://github.com/teverett/OLMReader</url>
 	<properties>
 		<target.jvm>1.7</target.jvm>
-		<spotless.version>1.16.0</spotless.version>
+		<spotless.version>1.17.0</spotless.version>
 		<required-maven-version>3.3.1</required-maven-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -96,7 +96,7 @@
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-xjc-plugin</artifactId>
-				<version>3.2.1</version>
+				<version>3.2.3</version>
 				<executions>
 					<execution>
 						<goals>
