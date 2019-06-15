@@ -1,5 +1,4 @@
 [![Travis](https://travis-ci.org/teverett/OLMReader.svg?branch=master)](https://travis-ci.org/teverett/OLMReader)
-[![Coverity Scan](https://img.shields.io/coverity/scan/3997.svg)](https://scan.coverity.com/projects/teverett-olmreader)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c1ef374e6fb42408e915a849c498798)](https://www.codacy.com/app/teverett/OLMReader?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=teverett/OLMReader&amp;utm_campaign=Badge_Grade)
 [![DepShield Badge](https://depshield.sonatype.org/badges/teverett/OLMReader/depshield.svg)](https://depshield.github.io)
 
@@ -26,7 +25,7 @@ Schemas for OLM XML can be found [here](https://github.com/teverett/OLMReader/bl
 ```
 <groupId>com.khubla.olmreader</groupId>
 <artifactId>olmreader</artifactId>
-<version>1.4</version>
+<version>1.6</version>
 <packaging>jar</packaging>
 ```
 
