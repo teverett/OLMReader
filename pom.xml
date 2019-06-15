@@ -4,7 +4,7 @@
 	<artifactId>olmreader</artifactId>
 	<packaging>jar</packaging>
 	<name>khubla.com OLM Reader</name>
-	<version>1.5.0-SNAPSHOT</version>
+	<version>1.6.0-SNAPSHOT</version>
 	<description>OLMReader is a library for reading MS Outlook for Mac OLM files</description>
 	<url>https://github.com/teverett/OLMReader</url>
 	<properties>
@@ -12,6 +12,9 @@
 		<spotless.version>1.17.0</spotless.version>
 		<required-maven-version>3.3.1</required-maven-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<javax.activation.version>1.2.0</javax.activation.version>
+		<jaxb.api.version>2.3.0</jaxb.api.version>
+		<lombok.version>1.18.6</lombok.version>
 	</properties>
 	<developers>
 		<developer>
@@ -61,6 +64,32 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.activation</groupId>
+			<artifactId>javax.activation</artifactId>
+			<version>${javax.activation.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-core</artifactId>
+			<version>${jaxb.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>${jaxb.api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -71,6 +100,7 @@
 				<configuration>
 					<source>${target.jvm}</source>
 					<target>${target.jvm}</target>
+					<release>11</release>
 				</configuration>
 			</plugin>
 			<plugin>
