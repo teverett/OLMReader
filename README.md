@@ -33,5 +33,20 @@ Schemas for OLM XML can be found [here](https://github.com/teverett/OLMReader/bl
 
 To use OLMReader, provide a class which implements [OLMMessageCallback](https://github.com/teverett/OLMReader/blob/master/src/main/java/com/khubla/olmreader/olm/OLMMessageCallback.java), [OLMRawMessageCallback](https://github.com/teverett/OLMReader/blob/master/src/main/java/com/khubla/olmreader/olm/OLMRawMessageCallback.java) and pass those implementations to [OLMReader](https://github.com/teverett/OLMReader/blob/master/src/main/java/com/khubla/olmreader/olm/OLMFile.java).readOLMFile.
 
+# Installation / Operation
 
+To run this application you must first have the [Java Platform (JDK) 12](https://www.oracle.com/technetwork/java/javase/downloads/jdk12-downloads-5295953.html) and [Apache Maven](https://maven.apache.org/).
 
+Ensure you set your `JAVA_HOME` as well as adding Maven to your `PATH`. [Instructions](https://maven.apache.org/install.html)
+
+After that is done make sure to flag the `.sh` files as executable 
+
+``` 
+chmod +x release.sh
+```
+
+and then execute using `./release.sh`
+
+# Troubleshooting
+
+If you have issues with the build, try running `mvn clean install` in the git root directory for this application.
