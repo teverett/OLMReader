@@ -10,7 +10,7 @@
 	<description>OLMReader is a library for reading MS Outlook for Mac OLM files</description>
 	<url>https://github.com/teverett/OLMReader</url>
 	<properties>
-		<target.jvm>1.7</target.jvm>
+		<target.jvm>1.9</target.jvm>
 		<spotless.version>1.17.0</spotless.version>
 		<required-maven-version>3.3.1</required-maven-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -213,7 +213,7 @@
 			<plugin>
 				<groupId>org.owasp</groupId>
 				<artifactId>dependency-check-maven</artifactId>
-				<version>5.0.0-M2</version>
+				<version>5.2.2</version>
 				<executions>
 					<execution>
 						<goals>
@@ -256,7 +256,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.0.1</version>
+						<version>3.1.1</version>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>
@@ -267,6 +267,7 @@
 						</executions>
 						<configuration>
 							<additionalparam>-Xdoclint:none</additionalparam>
+							<source>8</source> 
 						</configuration>
 					</plugin>
 					<plugin>
