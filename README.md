@@ -42,10 +42,10 @@ Ensure you set your `JAVA_HOME` as well as adding Maven to your `PATH`. [Instruc
 After that is done make sure to flag the `.sh` files as executable 
 
 ``` 
-chmod +x release.sh
+chmod +x run_example.sh
 ```
 
-and then execute using `./release.sh`
+and then execute using `./run_example.sh`
 
 # Troubleshooting
 
