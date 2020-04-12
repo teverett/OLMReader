@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
-<xs:schema
-	targetNamespace="http://www.w3.org/XML/1998/namespace" xml:lang="en"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema targetNamespace="http://www.w3.org/XML/1998/namespace" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:annotation>
 		<xs:documentation>
 			<div>
@@ -73,8 +70,7 @@
 							http://www.rfc-editor.org/rfc/bcp/bcp47.txt
 						</a>
 						and the IANA language subtag registry at
-						<a
-							href="http://www.iana.org/assignments/language-subtag-registry">
+						<a href="http://www.iana.org/assignments/language-subtag-registry">
 							http://www.iana.org/assignments/language-subtag-registry
 						</a>
 						for further information.

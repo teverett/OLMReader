@@ -7,6 +7,67 @@
 				<xs:element name="appointment" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
+							<xs:element name="OPFCalendarEventCopyNegativeExceptions" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="XMLElementDate" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:space" use="optional" />
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute ref="xml:space" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventExchangeAttachmentInfo" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventCopyAttachmentList" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="appointmentAttachment" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="OPFAttachmentContentExtension" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentFileSize" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentType" type="xs:string" />
+												<xs:attribute name="OPFAttachmentName" type="xs:string" />
+												<xs:attribute name="OPFAttachmentURL" type="xs:string" />
+												<xs:attribute name="OPFAttachmentContentID" type="xs:string" />
+												<xs:attribute ref="xml:space" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute ref="xml:space" use="optional" />
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventExchangeOrganizerInfo" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ExchangeServerLastModifiedTime" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFCalendarEventCopySnoozeTime" minOccurs="0">
 								<xs:complexType>
 									<xs:simpleContent>
@@ -62,6 +123,8 @@
 												<xs:attribute name="OPFCalendarAttendeeResponseRequested" type="xs:string" />
 												<xs:attribute name="OPFCalendarAttendeeStatus" type="xs:string" />
 												<xs:attribute name="OPFCalendarAttendeeType" type="xs:string" />
+												<xs:attribute name="OPFCalendarAttendeeProposedEnd" type="xs:string" />
+												<xs:attribute name="OPFCalendarAttendeeProposedStart" type="xs:string" />
 												<xs:attribute ref="xml:space" use="optional" />
 											</xs:complexType>
 										</xs:element>
@@ -508,6 +571,15 @@
 															</xs:simpleContent>
 														</xs:complexType>
 													</xs:element>
+													<xs:element name="OPFRecurrencePatternWeek" minOccurs="0">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:space" />
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
 													<xs:element name="OPFRecurrencePatternDayOfMonth" minOccurs="0">
 														<xs:complexType>
 															<xs:simpleContent>
@@ -540,7 +612,7 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute ref="xml:space" />
-			<xs:attribute type="xs:byte" name="elementCount" />
+			<xs:attribute name="elementCount" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

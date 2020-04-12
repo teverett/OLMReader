@@ -7,6 +7,15 @@
 				<xs:element name="contact" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
+							<xs:element name="OPFContactExchangeID" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFContactCopyCategoryList" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
@@ -891,7 +900,7 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute ref="xml:space" />
-			<xs:attribute type="xs:byte" name="elementCount" />
+			<xs:attribute name="elementCount" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

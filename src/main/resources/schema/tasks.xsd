@@ -334,7 +334,7 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute ref="xml:space" />
-			<xs:attribute type="xs:byte" name="elementCount" />
+			<xs:attribute name="elementCount" type="xs:integer" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
