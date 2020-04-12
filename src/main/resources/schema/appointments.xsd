@@ -7,6 +7,68 @@
 				<xs:element name="appointment" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
+							<xs:element name="OPFCalendarEventCopySnoozeTime" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventCopyRecurrenceId" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventCopyOrganizer" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventCopyDescriptionPlain" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventCopyDescription" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="OPFCalendarEventCopyAttendeeList" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="appointmentAttendee" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:attribute name="OPFCalendarAttendeeAddress" type="xs:string" />
+												<xs:attribute name="OPFCalendarAttendeeName" type="xs:string" />
+												<xs:attribute name="OPFCalendarAttendeeResponseRequested" type="xs:string" />
+												<xs:attribute name="OPFCalendarAttendeeStatus" type="xs:string" />
+												<xs:attribute name="OPFCalendarAttendeeType" type="xs:string" />
+												<xs:attribute ref="xml:space" use="optional" />
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute ref="xml:space" use="optional" />
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFCalendarEventCopyCategoryList" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>

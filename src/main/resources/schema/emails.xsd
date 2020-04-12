@@ -7,6 +7,24 @@
 				<xs:element name="email" maxOccurs="unbounded">
 					<xs:complexType>
 						<xs:all>
+							<xs:element name="ExchangeExtractedPhones" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ExchangeExtractedUrls" minOccurs="0">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:space" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
 							<xs:element name="OPFMessageCopyPrimaryCategory" minOccurs="0">
 								<xs:complexType>
 									<xs:sequence>
