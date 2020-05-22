@@ -9,7 +9,7 @@ import java.util.zip.*;
 import org.apache.commons.compress.archivers.zip.*;
 import org.apache.commons.compress.archivers.zip.ZipFile;
 import org.apache.commons.compress.utils.*;
-import org.slf4j.*;
+import org.apache.logging.log4j.*;
 import org.xml.sax.*;
 
 import com.khubla.olmreader.olm.generated.*;
@@ -26,7 +26,7 @@ public class OLMFile {
 	/**
 	 * logger
 	 */
-	private static final Logger logger = LoggerFactory.getLogger(OLMFile.class);
+	private static final Logger logger = LogManager.getLogger(OLMFile.class);
 	/**
 	 * XML extension
 	 */
