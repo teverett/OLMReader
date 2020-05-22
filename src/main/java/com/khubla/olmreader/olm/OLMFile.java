@@ -16,6 +16,7 @@ import com.khubla.olmreader.olm.generated.*;
 import com.khubla.olmreader.olm.generated.Appointments.*;
 import com.khubla.olmreader.olm.generated.Contacts.*;
 import com.khubla.olmreader.olm.generated.Emails.*;
+import com.khubla.olmreader.olm.generated.Emails.Email.OPFMessageCopyAttachmentList.*;
 import com.khubla.olmreader.olm.generated.Groups.*;
 import com.khubla.olmreader.olm.generated.Notes.*;
 import com.khubla.olmreader.olm.generated.Tasks.*;
@@ -169,7 +170,21 @@ public class OLMFile {
 			if ((null != emails) && (null != emails.getEmail())) {
 				for (int i = 0; i < emails.getEmail().size(); i++) {
 					final Email email = emails.getEmail().get(i);
-					olmMessageCallback.email(email);
+					HashMap<String, byte[]> attachments = null;
+					/*
+					 * attachments
+					 */
+					if (null != email.getOPFMessageCopyAttachmentList()) {
+						attachments = new HashMap<String, byte[]>();
+						for (final MessageAttachment messageAttachment : email.getOPFMessageCopyAttachmentList().getMessageAttachment()) {
+							final byte[] data = readAttachment(messageAttachment);
+							attachments.put(messageAttachment.getOPFAttachmentName(), data);
+						}
+					}
+					/*
+					 * ok
+					 */
+					olmMessageCallback.email(email, attachments);
 				}
 			}
 		}

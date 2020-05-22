@@ -6,6 +6,8 @@
  */
 package com.khubla.olmreader;
 
+import java.util.*;
+
 import org.junit.*;
 
 import com.khubla.olmreader.olm.*;
@@ -37,7 +39,7 @@ public class TestOutlook16_outlook_example implements OLMMessageCallback, OLMRaw
 	}
 
 	@Override
-	public void email(Email email) {
+	public void email(Email email, HashMap<String, byte[]> attachments) {
 		System.out.println("Email: " + email.getOPFMessageCopyMessageID().getValue());
 	}
 

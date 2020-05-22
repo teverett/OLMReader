@@ -1,78 +1,67 @@
 package com.khubla.olmreader;
 
-import java.io.IOException;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-import com.khubla.olmreader.olm.OLMFile;
-import com.khubla.olmreader.olm.OLMMessageCallback;
-import com.khubla.olmreader.olm.OLMRawMessageCallback;
-import com.khubla.olmreader.olm.generated.Appointments.Appointment;
-import com.khubla.olmreader.olm.generated.Categories;
-import com.khubla.olmreader.olm.generated.Categories.Category;
-import com.khubla.olmreader.olm.generated.Contacts;
-import com.khubla.olmreader.olm.generated.Emails;
-import com.khubla.olmreader.olm.generated.Groups.Group;
-import com.khubla.olmreader.olm.generated.Notes.Note;
-import com.khubla.olmreader.olm.generated.Tasks.Task;
+import com.khubla.olmreader.olm.*;
+import com.khubla.olmreader.olm.generated.*;
+import com.khubla.olmreader.olm.generated.Appointments.*;
+import com.khubla.olmreader.olm.generated.Categories.*;
+import com.khubla.olmreader.olm.generated.Groups.*;
+import com.khubla.olmreader.olm.generated.Notes.*;
+import com.khubla.olmreader.olm.generated.Tasks.*;
 
 public class OLMReaderConsoleReader implements OLMMessageCallback, OLMRawMessageCallback {
-   private OLMFile olmFile;
+	private OLMFile olmFile;
 
-   @Override
-   public void appointment(Appointment appointment) {
-      System.out.println("Appointment: " + appointment.getOPFCalendarEventCopyUUID().getValue());
-   }
+	@Override
+	public void appointment(Appointment appointment) {
+		System.out.println("Appointment: " + appointment.getOPFCalendarEventCopyUUID().getValue());
+	}
 
-   @Override
-   public void categories(Categories categories) {
-      for (final Category category : categories.getCategory()) {
-         System.out.println("Category: " + category.getOPFCategoryCopyName());
-      }
-   }
+	@Override
+	public void categories(Categories categories) {
+		for (final Category category : categories.getCategory()) {
+			System.out.println("Category: " + category.getOPFCategoryCopyName());
+		}
+	}
 
-   @Override
-   public void contact(Contacts.Contact contact) {
-      System.out.println("Contact: " + contact.getOPFContactCopyDisplayName().getValue());
-   }
+	@Override
+	public void contact(Contacts.Contact contact) {
+		System.out.println("Contact: " + contact.getOPFContactCopyDisplayName().getValue());
+	}
 
-   @Override
-   public void email(Emails.Email email) {
-      try {
-         if (null != email.getOPFMessageCopyAttachmentList()) {
-            final List<Emails.Email.OPFMessageCopyAttachmentList.MessageAttachment> attachments = email.getOPFMessageCopyAttachmentList().getMessageAttachment();
-            if (attachments != null) {
-               for (int i = 0; i < attachments.size(); i++) {
-                  olmFile.readAttachment(attachments.get(i));
-               }
-            }
-         }
-      } catch (final Exception e) {
-         e.printStackTrace();
-      }
-   }
+	@Override
+	public void email(Emails.Email email, HashMap<String, byte[]> attachments) {
+		try {
+			System.out.println("EMail: " + email.getOPFMessageCopyMessageID());
+		} catch (final Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-   @Override
-   public void group(Group group) {
-      System.out.println("Group: " + group.getOPFGroupCopyDisplayName().getValue());
-   }
+	@Override
+	public void group(Group group) {
+		System.out.println("Group: " + group.getOPFGroupCopyDisplayName().getValue());
+	}
 
-   @Override
-   public void note(Note note) {
-      System.out.println("Note: " + note.getOPFNoteCopyTitle().getValue());
-   }
+	@Override
+	public void note(Note note) {
+		System.out.println("Note: " + note.getOPFNoteCopyTitle().getValue());
+	}
 
-   @Override
-   public void rawMessage(String olmMessage) {
-      // System.out.println(olmMessage);
-   }
+	@Override
+	public void rawMessage(String olmMessage) {
+		// System.out.println(olmMessage);
+	}
 
-   public void read(String filename) throws IOException {
-      olmFile = new OLMFile(filename);
-      olmFile.readOLMFile(this, this);
-   }
+	public void read(String filename) throws IOException {
+		olmFile = new OLMFile(filename);
+		olmFile.readOLMFile(this, this);
+	}
 
-   @Override
-   public void task(Task task) {
-      System.out.println("Task: " + task.getOPFTaskCopyName().getValue());
-   }
+	@Override
+	public void task(Task task) {
+		System.out.println("Task: " + task.getOPFTaskCopyName().getValue());
+	}
 }
