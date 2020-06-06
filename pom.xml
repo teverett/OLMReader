@@ -18,6 +18,7 @@
 		<junit.version>4.13</junit.version>
 		<log4j.version>2.13.3</log4j.version>
 		<commons-cli.version>1.4</commons-cli.version>
+		<dependency-check-maven.version>5.3.0</dependency-check-maven.version>
 	</properties>
 	<developers>
 		<developer>
@@ -257,6 +258,25 @@
 								<phase>verify</phase>
 								<goals>
 									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>check</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.owasp</groupId>
+						<artifactId>dependency-check-maven</artifactId>
+						<version>${dependency-check-maven.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>check</goal>
 								</goals>
 							</execution>
 						</executions>
