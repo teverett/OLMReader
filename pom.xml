@@ -18,7 +18,7 @@
 		<junit.version>4.13</junit.version>
 		<log4j.version>2.13.3</log4j.version>
 		<commons-cli.version>1.4</commons-cli.version>
-		<dependency-check-maven.version>5.3.2</dependency-check-maven.version>
+		<dependency-check-maven.version>6.0.0</dependency-check-maven.version>
 	</properties>
 	<developers>
 		<developer>
