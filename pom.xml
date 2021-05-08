@@ -265,28 +265,6 @@
 				</plugins>
 			</build>
 		</profile>
-		<profile>
-			<id>check</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.owasp</groupId>
-						<artifactId>dependency-check-maven</artifactId>
-						<version>${dependency-check-maven.version}</version>
-						<configuration>
-							<failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>check</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 	</profiles>
 	<distributionManagement>
 		<snapshotRepository>
