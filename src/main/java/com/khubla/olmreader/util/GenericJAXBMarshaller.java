@@ -3,12 +3,14 @@ package com.khubla.olmreader.util;
 import java.io.*;
 
 import javax.xml.*;
-import javax.xml.bind.*;
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
 import javax.xml.validation.*;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.xml.sax.*;
+
+import jakarta.xml.bind.*;
 
 /**
  * @author tome

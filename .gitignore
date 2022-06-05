@@ -9,3 +9,5 @@ dependency-reduced-pom.xml
 .idea/
 olmreader.iml
 *.versionsBackup
+/.apt_generated/
+/.apt_generated_tests/
