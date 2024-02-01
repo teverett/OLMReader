@@ -16,7 +16,7 @@
 		<jaxb.api.version>4.0.3</jaxb.api.version>
 		<lombok.version>1.18.30</lombok.version>
 		<junit.version>4.13.2</junit.version>
-		<log4j.version>2.20.0</log4j.version>
+		<log4j.version>2.22.1</log4j.version>
 		<commons-cli.version>1.5.0</commons-cli.version>
 		<dependency-check-maven.version>6.1.5</dependency-check-maven.version>
 	</properties>
