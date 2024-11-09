@@ -19,7 +19,8 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        java-version: 12
-        distribution: 'zulu'
+        distribution: 'temurin'
+        java-version: 21
+                
     - name: Build with Maven
       run: mvn  -Pcheck -B package verify --file pom.xml
